@@ -963,7 +963,7 @@
               "condition": "AND",
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_udp"
+              "value": "local-udp"
             }
           ]
         }
@@ -1323,8 +1323,8 @@
         "allValue": null,
         "current": {
           "selected": false,
-          "text": "collector_websocket",
-          "value": "collector_websocket"
+          "text": "remote-socket",
+          "value": "remote-socket"
         },
         "description": null,
         "error": null,
@@ -1336,13 +1336,13 @@
         "options": [
           {
             "selected": false,
-            "text": "collector_udp",
-            "value": "collector_udp"
+            "text": "local-udp",
+            "value": "local-udp"
           },
           {
             "selected": true,
-            "text": "collector_websocket",
-            "value": "collector_websocket"
+            "text": "remote-socket",
+            "value": "remote-socket"
           }
         ],
         "query": "local-udp,remote-socket",

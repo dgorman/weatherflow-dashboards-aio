@@ -4080,8 +4080,8 @@
         "allValue": null,
         "current": {
           "selected": true,
-          "text": "collector_rest",
-          "value": "collector_rest"
+          "text": "remote-rest",
+          "value": "remote-rest"
         },
         "description": null,
         "error": null,
@@ -4093,16 +4093,16 @@
         "options": [
           {
             "selected": true,
-            "text": "collector_rest",
-            "value": "collector_rest"
+            "text": "remote-rest",
+            "value": "remote-rest"
           },
           {
             "selected": false,
-            "text": "collector_websocket",
-            "value": "collector_websocket"
+            "text": "remote-socket",
+            "value": "remote-socket"
           }
         ],
-        "query": "collector_rest,collector_websocket",
+        "query": "remote-rest,remote-socket",
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"

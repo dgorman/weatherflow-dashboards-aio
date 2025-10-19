@@ -322,7 +322,7 @@
             },
             {
               "params": [
-                "number_of_days_out"
+                "forecast_hourly_days_out"
               ],
               "type": "tag"
             },
@@ -367,7 +367,7 @@
             },
             {
               "condition": "AND",
-              "key": "number_of_days_out",
+              "key": "forecast_hourly_days_out",
               "operator": "=~",
               "value": "/^$forecast_hourly_days_out$/"
             }
@@ -426,7 +426,7 @@
               "condition": "AND",
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_udp"
+              "value": "local-udp"
             }
           ],
           "tz": "$tz"
@@ -711,7 +711,7 @@
             },
             {
               "params": [
-                "number_of_days_out"
+                "forecast_hourly_days_out"
               ],
               "type": "tag"
             },
@@ -749,7 +749,7 @@
             },
             {
               "condition": "AND",
-              "key": "number_of_days_out",
+              "key": "forecast_hourly_days_out",
               "operator": "=~",
               "value": "/^$forecast_hourly_days_out$/"
             }
@@ -802,7 +802,7 @@
               "condition": "AND",
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_udp"
+              "value": "local-udp"
             }
           ],
           "tz": "$tz"
@@ -1082,7 +1082,7 @@
             },
             {
               "params": [
-                "number_of_days_out"
+                "forecast_hourly_days_out"
               ],
               "type": "tag"
             },
@@ -1120,7 +1120,7 @@
             },
             {
               "condition": "AND",
-              "key": "number_of_days_out",
+              "key": "forecast_hourly_days_out",
               "operator": "=~",
               "value": "/^$forecast_hourly_days_out$/"
             }
@@ -1173,7 +1173,7 @@
               "condition": "AND",
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_rest"
+              "value": "remote-rest"
             }
           ],
           "tz": "$tz"
@@ -1457,7 +1457,7 @@
             },
             {
               "params": [
-                "number_of_days_out"
+                "forecast_hourly_days_out"
               ],
               "type": "tag"
             },
@@ -1502,7 +1502,7 @@
             },
             {
               "condition": "AND",
-              "key": "number_of_days_out",
+              "key": "forecast_hourly_days_out",
               "operator": "=~",
               "value": "/^$forecast_hourly_days_out$/"
             }
@@ -1561,7 +1561,7 @@
               "condition": "AND",
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_udp"
+              "value": "local-udp"
             }
           ],
           "tz": "$tz"
@@ -1846,7 +1846,7 @@
             },
             {
               "params": [
-                "number_of_days_out"
+                "forecast_hourly_days_out"
               ],
               "type": "tag"
             },
@@ -1890,7 +1890,7 @@
             },
             {
               "condition": "AND",
-              "key": "number_of_days_out",
+              "key": "forecast_hourly_days_out",
               "operator": "=~",
               "value": "/^$forecast_hourly_days_out$/"
             }
@@ -1949,7 +1949,7 @@
               "condition": "AND",
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_udp"
+              "value": "local-udp"
             }
           ],
           "tz": "$tz"
@@ -2233,7 +2233,7 @@
             },
             {
               "params": [
-                "number_of_days_out"
+                "forecast_hourly_days_out"
               ],
               "type": "tag"
             },
@@ -2271,7 +2271,7 @@
             },
             {
               "condition": "AND",
-              "key": "number_of_days_out",
+              "key": "forecast_hourly_days_out",
               "operator": "=~",
               "value": "/^$forecast_hourly_days_out$/"
             }
@@ -2324,7 +2324,7 @@
               "condition": "AND",
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_udp"
+              "value": "local-udp"
             }
           ],
           "tz": "$tz"
@@ -2416,7 +2416,7 @@
         "includeAll": true,
         "label": "Days Out",
         "multi": false,
-        "name": "number_of_days_out",
+        "name": "forecast_hourly_days_out",
         "options": [],
         "query": "SHOW TAG VALUES WITH KEY = \"forecast_hourly_days_out\"",
         "refresh": 1,

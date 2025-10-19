@@ -436,7 +436,7 @@
             {
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_rest"
+              "value": "remote-rest"
             },
             {
               "condition": "AND",
@@ -3198,8 +3198,8 @@
           },
           {
             "selected": false,
-            "text": "collector_udp",
-            "value": "collector_udp"
+            "text": "local-udp",
+            "value": "local-udp"
           },
           {
             "selected": false,
@@ -3208,13 +3208,13 @@
           },
           {
             "selected": false,
-            "text": "collector_rest",
-            "value": "collector_rest"
+            "text": "remote-rest",
+            "value": "remote-rest"
           },
           {
             "selected": false,
-            "text": "collector_websocket",
-            "value": "collector_websocket"
+            "text": "remote-socket",
+            "value": "remote-socket"
           }
         ],
         "query": "local-udp,remote-forecast,remote-rest,remote-socket",

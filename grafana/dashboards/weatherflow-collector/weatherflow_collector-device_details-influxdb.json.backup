@@ -3575,8 +3575,8 @@
         "allValue": null,
         "current": {
           "selected": false,
-          "text": "collector_udp",
-          "value": "collector_udp"
+          "text": "local-udp",
+          "value": "local-udp"
         },
         "description": null,
         "error": null,
@@ -3588,11 +3588,11 @@
         "options": [
           {
             "selected": true,
-            "text": "collector_udp",
-            "value": "collector_udp"
+            "text": "local-udp",
+            "value": "local-udp"
           }
         ],
-        "query": "collector_udp",
+        "query": "local-udp",
         "skipUrlSync": false,
         "type": "custom"
       }

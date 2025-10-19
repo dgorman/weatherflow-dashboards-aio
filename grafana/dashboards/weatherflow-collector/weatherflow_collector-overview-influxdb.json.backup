@@ -713,7 +713,7 @@
             {
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_rest"
+              "value": "remote-rest"
             },
             {
               "condition": "AND",
@@ -1735,7 +1735,7 @@
             {
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_rest"
+              "value": "remote-rest"
             },
             {
               "condition": "AND",
@@ -2757,7 +2757,7 @@
             {
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_rest"
+              "value": "remote-rest"
             },
             {
               "condition": "AND",
@@ -2901,7 +2901,7 @@
               "condition": "AND",
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_rest"
+              "value": "remote-rest"
             }
           ],
           "tz": "$tz"
@@ -3470,7 +3470,7 @@
             {
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_websocket"
+              "value": "remote-socket"
             },
             {
               "condition": "AND",
@@ -3672,7 +3672,7 @@
             {
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_websocket"
+              "value": "remote-socket"
             },
             {
               "condition": "AND",
@@ -4891,7 +4891,7 @@
               "condition": "AND",
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_rest"
+              "value": "remote-rest"
             }
           ],
           "tz": "$tz"

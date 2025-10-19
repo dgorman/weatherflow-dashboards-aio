@@ -533,7 +533,7 @@
             {
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_rest"
+              "value": "remote-rest"
             },
             {
               "condition": "AND",
@@ -1046,7 +1046,7 @@
               "condition": "AND",
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_rest"
+              "value": "remote-rest"
             }
           ],
           "tz": "$tz"
@@ -1518,7 +1518,7 @@
               "type": "time"
             }
           ],
-          "measurement": "weatherflow_forecast_daily",
+          "measurement": "weatherflow_forecast_current",
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT last(\"air_temp_high\") * 9/5 + 32 FROM \"weatherflow_forecast_daily\" WHERE (\"station_name\" =~ /^$station_name$/) AND $timeFilter GROUP BY time(1d) tz('$tz')",
@@ -1555,7 +1555,7 @@
               "condition": "AND",
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_forecast"
+              "value": "remote-forecast"
             }
           ],
           "tz": "$tz"
@@ -2027,7 +2027,7 @@
               "type": "time"
             }
           ],
-          "measurement": "weatherflow_forecast_daily",
+          "measurement": "weatherflow_forecast_current",
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT last(\"air_temp_high\") * 9/5 + 32 FROM \"weatherflow_forecast_daily\" WHERE (\"station_name\" =~ /^$station_name$/) AND $timeFilter GROUP BY time(1d) tz('$tz')",
@@ -2064,7 +2064,7 @@
               "condition": "AND",
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_forecast"
+              "value": "remote-forecast"
             }
           ],
           "tz": "$tz"
@@ -2643,7 +2643,7 @@
             }
           ],
           "hide": false,
-          "measurement": "weatherflow_forecast_daily",
+          "measurement": "weatherflow_forecast_current",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "E",
@@ -2672,7 +2672,7 @@
               "condition": "AND",
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_forecast"
+              "value": "remote-forecast"
             }
           ],
           "tz": "$tz"
@@ -2869,7 +2869,7 @@
               "condition": "AND",
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_rest"
+              "value": "remote-rest"
             }
           ],
           "tz": "$tz"
@@ -3018,7 +3018,7 @@
               "condition": "AND",
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_rest"
+              "value": "remote-rest"
             }
           ],
           "tz": "$tz"
@@ -3348,7 +3348,7 @@
             {
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_websocket"
+              "value": "remote-socket"
             },
             {
               "condition": "AND",
@@ -3381,7 +3381,7 @@
                 "from": 337.5,
                 "result": {
                   "index": 0,
-                  "text": "\u2193"
+                  "text": "↓"
                 },
                 "to": 360
               },
@@ -3392,7 +3392,7 @@
                 "from": 292.5,
                 "result": {
                   "index": 1,
-                  "text": "\u2198"
+                  "text": "↘"
                 },
                 "to": 337.5
               },
@@ -3403,7 +3403,7 @@
                 "from": 247.5,
                 "result": {
                   "index": 2,
-                  "text": "\u2192"
+                  "text": "→"
                 },
                 "to": 292.5
               },
@@ -3414,7 +3414,7 @@
                 "from": 202.5,
                 "result": {
                   "index": 3,
-                  "text": "\u2197"
+                  "text": "↗"
                 },
                 "to": 247.5
               },
@@ -3425,7 +3425,7 @@
                 "from": 157.5,
                 "result": {
                   "index": 4,
-                  "text": "\u2191"
+                  "text": "↑"
                 },
                 "to": 202.5
               },
@@ -3436,7 +3436,7 @@
                 "from": 112.5,
                 "result": {
                   "index": 5,
-                  "text": "\u2196"
+                  "text": "↖"
                 },
                 "to": 157.5
               },
@@ -3447,7 +3447,7 @@
                 "from": 77.5,
                 "result": {
                   "index": 6,
-                  "text": "\u2190"
+                  "text": "←"
                 },
                 "to": 112.5
               },
@@ -3458,7 +3458,7 @@
                 "from": 22.5,
                 "result": {
                   "index": 7,
-                  "text": "\u2199"
+                  "text": "↙"
                 },
                 "to": 77.5
               },
@@ -3469,7 +3469,7 @@
                 "from": 0,
                 "result": {
                   "index": 8,
-                  "text": "\u2193"
+                  "text": "↓"
                 },
                 "to": 22.5
               },
@@ -3550,7 +3550,7 @@
             {
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_websocket"
+              "value": "remote-socket"
             },
             {
               "condition": "AND",
@@ -4879,7 +4879,7 @@
             {
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_rest"
+              "value": "remote-rest"
             },
             {
               "condition": "AND",
@@ -4937,7 +4937,7 @@
             {
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_rest"
+              "value": "remote-rest"
             },
             {
               "condition": "AND",
@@ -5034,7 +5034,7 @@
             {
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_rest"
+              "value": "remote-rest"
             },
             {
               "condition": "AND",
@@ -5084,7 +5084,7 @@
             {
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_rest"
+              "value": "remote-rest"
             },
             {
               "condition": "AND",
@@ -5142,7 +5142,7 @@
             {
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_rest"
+              "value": "remote-rest"
             },
             {
               "condition": "AND",
@@ -5198,7 +5198,7 @@
             {
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_rest"
+              "value": "remote-rest"
             },
             {
               "condition": "AND",
@@ -5248,7 +5248,7 @@
             {
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_rest"
+              "value": "remote-rest"
             },
             {
               "condition": "AND",
@@ -5298,7 +5298,7 @@
             {
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_rest"
+              "value": "remote-rest"
             },
             {
               "condition": "AND",
@@ -5348,7 +5348,7 @@
             {
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_rest"
+              "value": "remote-rest"
             },
             {
               "condition": "AND",
@@ -5828,7 +5828,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "\u2600\ufe0f"
+              "options": "☀️"
             },
             "properties": [
               {
@@ -5844,7 +5844,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "\ud83c\udf19"
+              "options": "🌙"
             },
             "properties": [
               {
@@ -5875,7 +5875,7 @@
       "pluginVersion": "8.0.4",
       "targets": [
         {
-          "alias": "\u2600\ufe0f",
+          "alias": "☀️",
           "groupBy": [
             {
               "params": [
@@ -5920,7 +5920,7 @@
           "tz": "$tz"
         },
         {
-          "alias": "\ud83c\udf19",
+          "alias": "🌙",
           "groupBy": [
             {
               "params": [
@@ -5994,7 +5994,7 @@
               "Conditions": "",
               "Icon": "Sky",
               "Time": "Date",
-              "\u2600\ufe0f": ""
+              "☀️": ""
             }
           }
         },
@@ -6007,7 +6007,7 @@
                   "id": "isNotNull",
                   "options": {}
                 },
-                "fieldName": "\u2600\ufe0f"
+                "fieldName": "☀️"
               }
             ],
             "match": "any",
@@ -6162,7 +6162,7 @@
             {
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_rest"
+              "value": "remote-rest"
             },
             {
               "condition": "AND",
@@ -6213,7 +6213,7 @@
             {
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_rest"
+              "value": "remote-rest"
             },
             {
               "condition": "AND",
@@ -6379,7 +6379,7 @@
             {
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_rest"
+              "value": "remote-rest"
             },
             {
               "condition": "AND",
@@ -6430,7 +6430,7 @@
             {
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_rest"
+              "value": "remote-rest"
             },
             {
               "condition": "AND",
@@ -6586,7 +6586,7 @@
             {
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_rest"
+              "value": "remote-rest"
             },
             {
               "condition": "AND",
@@ -6643,7 +6643,7 @@
             {
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_rest"
+              "value": "remote-rest"
             },
             {
               "condition": "AND",
@@ -6700,7 +6700,7 @@
             {
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_rest"
+              "value": "remote-rest"
             },
             {
               "condition": "AND",
@@ -6751,7 +6751,7 @@
             {
               "key": "collector_type",
               "operator": "=",
-              "value": "collector_rest"
+              "value": "remote-rest"
             },
             {
               "condition": "AND",
@@ -6867,8 +6867,8 @@
     ]
   },
   "time": {
-    "from": "now",
-    "to": "now+24h"
+    "from": "now-2m",
+    "to": "now+1h"
   },
   "timepicker": {
     "refresh_intervals": [
