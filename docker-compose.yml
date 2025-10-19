@@ -1,0 +1,52 @@
+
+
+services:
+  wxfdashboardsaio_influxdb:
+    container_name: wxfdashboardsaio_influxdb
+    environment:
+      TZ: America/Denver
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: admin
+      DOCKER_INFLUXDB_INIT_PASSWORD: Gk372Qm70E0xGVIcUpSyRiwqfAyhuwkS
+      DOCKER_INFLUXDB_INIT_ORG: weatherflow
+      DOCKER_INFLUXDB_INIT_BUCKET: weatherflow
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: weatherflow-admin-token-12345
+    image: influxdb:2.7
+    ports:
+    - protocol: tcp
+      published: 8086
+      target: 8086
+    restart: always
+    volumes:
+    - wxfdashboardsaio-influxdb-data:/var/lib/influxdb:rw
+  wxfdashboardsaio-collector:
+    container_name: wxfdashboardsaio-collector-a1af9766
+    environment:
+      TZ: America/Denver
+      WEATHERFLOW_COLLECTOR_DEBUG: "true"
+      WEATHERFLOW_COLLECTOR_DEBUG_CURL: "true"
+      WEATHERFLOW_COLLECTOR_DISABLE_HEALTH_CHECK: "false"
+      WEATHERFLOW_COLLECTOR_DISABLE_HOST_PERFORMANCE: "false"
+      WEATHERFLOW_COLLECTOR_DISABLE_LOCAL_UDP: "false"
+      WEATHERFLOW_COLLECTOR_DISABLE_REMOTE_FORECAST: "false"
+      WEATHERFLOW_COLLECTOR_DISABLE_REMOTE_REST: "false"
+      WEATHERFLOW_COLLECTOR_DISABLE_REMOTE_SOCKET: "false"
+      WEATHERFLOW_COLLECTOR_HEALTHCHECK: "true"
+      WEATHERFLOW_COLLECTOR_HOST_HOSTNAME: MBP.olympusdrive.com
+      WEATHERFLOW_COLLECTOR_INFLUXDB_URL: http://wxfdashboardsaio_influxdb:8086
+      WEATHERFLOW_COLLECTOR_INFLUXDB_TOKEN: weatherflow-admin-token-12345
+      WEATHERFLOW_COLLECTOR_INFLUXDB_ORG: weatherflow
+      WEATHERFLOW_COLLECTOR_INFLUXDB_BUCKET: weatherflow
+      WEATHERFLOW_COLLECTOR_TOKEN: a1af9766-cf15-429b-8bbc-8c40bcda2314
+      WEATHERFLOW_COLLECTOR_API_TOKEN: a1af9766-cf15-429b-8bbc-8c40bcda2314
+    depends_on:
+      - "wxfdashboardsaio_influxdb"
+    image: lux4rd0/weatherflow-collector:latest
+    ports:
+    - protocol: udp
+      published: 50222
+      target: 50222
+    restart: always
+volumes:
+  wxfdashboardsaio-influxdb-data: 
+version: '3.3'
