@@ -2075,12 +2075,12 @@
       {
         "allValue": null,
         "current": {
-          "selected": false,
-          "text": "America/Chicago",
-          "value": "America/Chicago"
+          "selected": true,
+          "text": "America/Denver",
+          "value": "America/Denver"
         },
         "datasource": "InfluxDB - weatherflow",
-        "definition": "SHOW TAG VALUES WITH KEY = \"timezone\"",
+        "definition": "SHOW TAG VALUES WITH KEY = \"station_time_zone\"",
         "description": null,
         "error": null,
         "hide": 0,
@@ -2089,7 +2089,7 @@
         "multi": false,
         "name": "tz",
         "options": [],
-        "query": "SHOW TAG VALUES WITH KEY = \"timezone\"",
+        "query": "SHOW TAG VALUES WITH KEY = \"station_time_zone\"",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -2198,7 +2198,7 @@
       {
         "allValue": null,
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "collector_udp",
           "value": "collector_udp"
         },
@@ -2218,7 +2218,7 @@
         ],
         "query": "collector_udp",
         "skipUrlSync": false,
-        "type": "custom"
+        "type": "constant"
       }
     ]
   },

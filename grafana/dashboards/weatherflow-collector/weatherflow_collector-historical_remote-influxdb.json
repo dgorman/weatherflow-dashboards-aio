@@ -4052,12 +4052,12 @@
       {
         "allValue": null,
         "current": {
-          "selected": false,
-          "text": "America/Chicago",
-          "value": "America/Chicago"
+          "selected": true,
+          "text": "America/Denver",
+          "value": "America/Denver"
         },
         "datasource": "InfluxDB - weatherflow",
-        "definition": "SHOW TAG VALUES WITH KEY = \"timezone\"",
+        "definition": "SHOW TAG VALUES WITH KEY = \"station_time_zone\"",
         "description": null,
         "error": null,
         "hide": 0,
@@ -4066,7 +4066,7 @@
         "multi": false,
         "name": "tz",
         "options": [],
-        "query": "SHOW TAG VALUES WITH KEY = \"timezone\"",
+        "query": "SHOW TAG VALUES WITH KEY = \"station_time_zone\"",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -4085,7 +4085,7 @@
         },
         "description": null,
         "error": null,
-        "hide": 0,
+        "hide": 2,
         "includeAll": false,
         "label": "Collector Type",
         "multi": false,
@@ -4095,17 +4095,12 @@
             "selected": true,
             "text": "collector_rest",
             "value": "collector_rest"
-          },
-          {
-            "selected": false,
-            "text": "collector_websocket",
-            "value": "collector_websocket"
           }
         ],
-        "query": "collector_rest,collector_websocket",
+        "query": "collector_rest",
         "queryValue": "",
         "skipUrlSync": false,
-        "type": "custom"
+        "type": "constant"
       },
       {
         "allValue": null,

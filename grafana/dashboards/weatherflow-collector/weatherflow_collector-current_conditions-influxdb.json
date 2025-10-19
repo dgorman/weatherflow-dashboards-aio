@@ -1498,7 +1498,7 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -1513,9 +1513,15 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "1d"
               ],
               "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
             }
           ],
           "measurement": "weatherflow_forecast_daily",
@@ -1528,20 +1534,20 @@
           "select": [
             [
               {
+                "type": "field",
                 "params": [
                   "air_temp_high"
-                ],
-                "type": "field"
+                ]
               },
               {
-                "params": [],
-                "type": "last"
+                "type": "last",
+                "params": []
               },
               {
+                "type": "math",
                 "params": [
-                  "* 9/5 + 32"
-                ],
-                "type": "math"
+                  "* 9 / 5 + 32"
+                ]
               }
             ]
           ],
@@ -1563,7 +1569,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Forecast High",
+      "title": "Forecasted High",
       "transformations": [],
       "type": "stat"
     },
@@ -2007,7 +2013,7 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -2022,9 +2028,15 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "1d"
               ],
               "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
             }
           ],
           "measurement": "weatherflow_forecast_daily",
@@ -2037,20 +2049,20 @@
           "select": [
             [
               {
+                "type": "field",
                 "params": [
                   "air_temp_low"
-                ],
-                "type": "field"
+                ]
               },
               {
-                "params": [],
-                "type": "last"
+                "type": "last",
+                "params": []
               },
               {
+                "type": "math",
                 "params": [
-                  "* 9/5 + 32"
-                ],
-                "type": "math"
+                  "* 9 / 5 + 32"
+                ]
               }
             ]
           ],
@@ -2072,7 +2084,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Forecast Low",
+      "title": "Forecasted Low",
       "transformations": [],
       "type": "stat"
     },
@@ -2622,7 +2634,7 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -2637,13 +2649,19 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "1d"
               ],
               "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
             }
           ],
           "hide": false,
-          "measurement": "weatherflow_forecast_daily",
+          "measurement": "weatherflow_forecast_hourly",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "E",
@@ -2651,14 +2669,14 @@
           "select": [
             [
               {
+                "type": "field",
                 "params": [
                   "precip_probability"
-                ],
-                "type": "field"
+                ]
               },
               {
-                "params": [],
-                "type": "last"
+                "type": "max",
+                "params": []
               }
             ]
           ],
@@ -2678,7 +2696,7 @@
           "tz": "$tz"
         }
       ],
-      "timeFrom": null,
+      "timeFrom": "now/d",
       "timeShift": null,
       "title": "Chance",
       "transformations": [],
@@ -6867,7 +6885,7 @@
     ]
   },
   "time": {
-    "from": "now",
+    "from": "now-6h",
     "to": "now+24h"
   },
   "timepicker": {
