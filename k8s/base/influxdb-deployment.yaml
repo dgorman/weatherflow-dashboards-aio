@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: influxdb
+  namespace: weatherflow
+  labels:
+    app: influxdb
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: influxdb
+  template:
+    metadata:
+      labels:
+        app: influxdb
+    spec:
+      containers:
+      - name: influxdb
+        image: influxdb:2.7
+        ports:
+        - containerPort: 8086
+          name: http
+        env:
+        - name: DOCKER_INFLUXDB_INIT_MODE
+          value: "setup"
+        - name: DOCKER_INFLUXDB_INIT_USERNAME
+          value: "admin"
+        - name: DOCKER_INFLUXDB_INIT_PASSWORD
+          value: "weatherflow-admin-password"
+        - name: DOCKER_INFLUXDB_INIT_ORG
+          value: "weatherflow"
+        - name: DOCKER_INFLUXDB_INIT_BUCKET
+          value: "weatherflow"
+        - name: DOCKER_INFLUXDB_INIT_ADMIN_TOKEN
+          value: "weatherflow-admin-token-12345"
+        volumeMounts:
+        - name: influxdb-data
+          mountPath: /var/lib/influxdb2
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+      volumes:
+      - name: influxdb-data
+        persistentVolumeClaim:
+          claimName: influxdb-data

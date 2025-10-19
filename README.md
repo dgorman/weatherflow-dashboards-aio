@@ -18,11 +18,20 @@ A live set of dashboards using this collector [are available](https://labs.lux4r
 
 ## Getting Started
 
-The project is built around a pre-configured Docker stack containing the following containers:
+This project supports two deployment modes:
 
- - [Grafana](https://grafana.com/oss/grafana/)
- - [InfluxDB 1.8](https://docs.influxdata.com/influxdb/v1.8/)
+### Local Development
+The project includes a pre-configured Docker Compose stack for local development:
+ - [InfluxDB 2.7](https://docs.influxdata.com/influxdb/v2.7/)
  - [WeatherFlow Collector](https://github.com/lux4rd0/weatherflow-collector)
+ - Your existing Grafana instance (not included in stack)
+
+### Production (Kubernetes)
+For production deployment to Kubernetes:
+ - InfluxDB 2.7 with persistent storage (Longhorn)
+ - WeatherFlow Collector with host networking for UDP
+ - Automated deployment via Argo CD
+ - See [k8s/README.md](k8s/README.md) for full deployment documentation
 
 ## Prerequisites
 
@@ -90,6 +99,51 @@ This command will start to download the Grafana, InfluxDB, and weatherflow-colle
 *Note, this project has been tested on 64-bit CentOS 7 (centos-release-7-9.2009.1.el7.centos.x86_64) and 32-bit Raspberry Pi 4 (Raspberry Pi OS/January 11th 2021)*
 
 https://github.com/lux4rd0/weatherflow-collector#using
+
+## Production Deployment (Kubernetes)
+
+For production deployment to Kubernetes with Argo CD automation:
+
+### Quick Start
+
+1. **Initial Setup** (one-time):
+   ```bash
+   ./setup.sh
+   ```
+   This syncs code to your remote server and creates the Argo CD application.
+
+2. **Deploy/Update**:
+   ```bash
+   ./deploy.sh
+   ```
+   This builds the Docker image, pushes to your registry, and deploys to Kubernetes.
+
+### What Gets Deployed
+
+- **InfluxDB 2.7**: With 10Gi persistent storage (Longhorn)
+- **WeatherFlow Collector**: With host networking to receive UDP broadcasts
+- **Automated Sync**: Argo CD monitors and auto-deploys changes
+
+### Configuration
+
+Key settings in `k8s/overlays/prod/kustomization.yaml`:
+- Container registry: `registry.olympusdrive.com`
+- Namespace: `weatherflow`
+- Image tag: `latest` (or specify version)
+
+### Monitoring
+
+Check deployment status:
+```bash
+ssh dgorman@node01.olympusdrive.com 'kubectl get pods -n weatherflow'
+```
+
+View logs:
+```bash
+ssh dgorman@node01.olympusdrive.com 'kubectl logs -f -n weatherflow -l app=weatherflow-collector'
+```
+
+For complete deployment documentation, architecture details, and troubleshooting, see **[k8s/README.md](k8s/README.md)**.
 
 ## Grafana Dashboards
 

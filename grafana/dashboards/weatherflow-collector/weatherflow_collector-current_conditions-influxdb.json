@@ -3010,7 +3010,7 @@
             [
               {
                 "params": [
-                  "sea_level_pressure"
+                  "calculated_sea_level_pressure"
                 ],
                 "type": "field"
               },
@@ -3166,7 +3166,7 @@
             }
           ],
           "hide": false,
-          "measurement": "weatherflow_forecast_hourly",
+          "measurement": "weatherflow_obs",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "I",

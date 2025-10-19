@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weatherflow-collector
+  namespace: weatherflow
+  labels:
+    app: weatherflow-collector
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: weatherflow-collector
+  template:
+    metadata:
+      labels:
+        app: weatherflow-collector
+    spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      containers:
+      - name: collector
+        image: registry.olympusdrive.com/weatherflow-collector:latest
+        env:
+        - name: WEATHERFLOW_COLLECTOR_TOKEN
+          value: "a1af9766-cf15-429b-8bbc-8c40bcda2314"
+        - name: WEATHERFLOW_COLLECTOR_INFLUXDB_URL
+          value: "http://influxdb.weatherflow.svc.cluster.local:8086"
+        - name: WEATHERFLOW_COLLECTOR_INFLUXDB_TOKEN
+          value: "weatherflow-admin-token-12345"
+        - name: WEATHERFLOW_COLLECTOR_INFLUXDB_ORG
+          value: "weatherflow"
+        - name: WEATHERFLOW_COLLECTOR_INFLUXDB_BUCKET
+          value: "weatherflow"
+        - name: WEATHERFLOW_COLLECTOR_DISABLE_REST_OBSERVATIONS_DEVICE
+          value: "false"
+        - name: WEATHERFLOW_COLLECTOR_DISABLE_REST_OBSERVATIONS_STATION
+          value: "false"
+        - name: WEATHERFLOW_COLLECTOR_DISABLE_REST_FORECASTS
+          value: "false"
+        - name: WEATHERFLOW_COLLECTOR_DISABLE_REST_STATS
+          value: "false"
+        - name: WEATHERFLOW_COLLECTOR_DISABLE_WEBSOCKET
+          value: "false"
+        - name: WEATHERFLOW_COLLECTOR_DISABLE_UDP
+          value: "false"
+        - name: WEATHERFLOW_COLLECTOR_DISABLE_HOST_PERFORMANCE
+          value: "false"
+        - name: WEATHERFLOW_COLLECTOR_DISABLE_HEALTH_CHECK
+          value: "false"
+        - name: WEATHERFLOW_COLLECTOR_DEBUG
+          value: "true"
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
