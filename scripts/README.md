@@ -30,12 +30,15 @@ cd /home/dgorman/Apps/weatherflow-collector
 **Configuration:**
 ```
 Name:         InfluxDB - weatherflow
-Type:         InfluxDB (Flux)
+Type:         InfluxDB 2.x (InfluxQL compatibility mode)
 URL:          http://influxdb.weatherflow.svc.cluster.local:8086
-Organization: weatherflow
-Bucket:       weatherflow
+User:         weatherflow (organization)
+Database:     weatherflow (bucket)
+Password:     <token> (stored securely)
 Default:      Yes
 ```
+
+**Note:** The datasource uses InfluxDB 2.x with InfluxQL compatibility for backward compatibility with existing dashboards that use InfluxQL queries (SELECT statements).
 
 #### `import-grafana-dashboards.sh`
 Imports all 11 WeatherFlow dashboards into Grafana's "Weather" folder.

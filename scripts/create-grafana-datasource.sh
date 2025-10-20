@@ -109,23 +109,29 @@ fi
 echo ""
 
 # Create datasource JSON payload
+# Note: InfluxDB 2.x with InfluxQL compatibility requires:
+# - user = organization
+# - database = bucket name
+# - password = token (in secureJsonData)
+# - No version specified (uses InfluxQL by default for backward compatibility)
 DATASOURCE_JSON=$(cat <<EOF
 {
   "name": "$DATASOURCE_NAME",
   "type": "influxdb",
   "access": "proxy",
   "url": "$INFLUXDB_URL",
-  "database": "",
+  "user": "$INFLUXDB_ORG",
+  "database": "$INFLUXDB_BUCKET",
   "basicAuth": false,
   "isDefault": true,
   "jsonData": {
-    "version": "Flux",
+    "httpMode": "POST",
     "organization": "$INFLUXDB_ORG",
     "defaultBucket": "$INFLUXDB_BUCKET",
     "tlsSkipVerify": true
   },
   "secureJsonData": {
-    "token": "$INFLUXDB_TOKEN"
+    "password": "$INFLUXDB_TOKEN"
   }
 }
 EOF
