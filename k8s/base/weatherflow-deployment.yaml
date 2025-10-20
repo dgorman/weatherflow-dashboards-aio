@@ -19,7 +19,7 @@ spec:
       dnsPolicy: ClusterFirstWithHostNet
       containers:
       - name: collector
-        image: registry.olympusdrive.com/weatherflow-collector:latest
+        image: lux4rd0/weatherflow-collector:latest
         env:
         - name: WEATHERFLOW_COLLECTOR_TOKEN
           value: "a1af9766-cf15-429b-8bbc-8c40bcda2314"
