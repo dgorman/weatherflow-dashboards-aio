@@ -98,9 +98,9 @@ import_dashboard() {
     
     echo "📊 Importing: $dashboard_name"
     
-    # Read dashboard JSON and create import payload
+    # Read dashboard JSON, remove id field, and create import payload
     local temp_payload=$(mktemp)
-    cat "$file" | jq -c --arg uid "$folder_uid" '{dashboard: ., folderUid: $uid, overwrite: true, message: "Imported via script"}' > "$temp_payload"
+    cat "$file" | jq -c --arg uid "$folder_uid" '{dashboard: (. | del(.id)), folderUid: $uid, overwrite: true, message: "Imported via script"}' > "$temp_payload"
     
     # Import dashboard
     IMPORT_RESPONSE=$(curl -s -X POST \
