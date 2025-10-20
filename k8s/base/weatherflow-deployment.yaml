@@ -21,7 +21,7 @@ spec:
       - name: collector
         image: registry.olympusdrive.com/weatherflow-collector:latest
         env:
-        - name: WEATHERFLOW_COLLECTOR_TOKEN
+        - name: WEATHERFLOW_COLLECTOR_API_TOKEN
           value: "a1af9766-cf15-429b-8bbc-8c40bcda2314"
         - name: WEATHERFLOW_COLLECTOR_INFLUXDB_URL
           value: "http://influxdb.weatherflow.svc.cluster.local:8086"
