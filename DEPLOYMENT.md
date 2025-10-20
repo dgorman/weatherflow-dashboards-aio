@@ -52,9 +52,6 @@ ssh dgorman@node01.olympusdrive.com 'argo logs -n argo @latest -f'
 # 1. Push code to GitHub
 git push origin main
 
-# 2. Sync workflow files to production
-rsync -avz --exclude '.git/' /Users/dgorman/Dev/weatherflow-collector/argo/ \
-  dgorman@node01.olympusdrive.com:/home/dgorman/Apps/weatherflow-collector/argo/
 
 # 3. Trigger first deployment
 ./argo/trigger-deploy.sh

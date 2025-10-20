@@ -31,13 +31,6 @@ This document summarizes the Argo Workflow deployment setup for weatherflow-coll
    - Added git-based workflow documentation
    - Removed references to deprecated deploy.sh and setup.sh
 
-### Removed Files
-
-1. **`deploy.sh`** - Deprecated rsync-based deployment
-2. **`setup.sh`** - Deprecated initial setup script
-
-These scripts are no longer needed since the Argo Workflow handles everything automatically.
-
 ## How It Works (Git-Based CI/CD)
 
 ### Workflow Steps
@@ -60,19 +53,6 @@ These scripts are no longer needed since the Argo Workflow handles everything au
    └─> Triggers rollout: kubectl rollout restart
    └─> Waits for success (300s timeout)
 ```
-
-### Key Advantages
-
-| Feature | Old Method (rsync) | Argo Workflow |
-|---------|-------------------|---------------|
-| **Source** | rsync from local dev | Git clone from GitHub |
-| **Build Location** | SSH to node01 | In-cluster (DinD pod) |
-| **Versioning** | Tag is "latest" only | Git SHA + latest |
-| **Execution** | Local bash script | Kubernetes-native |
-| **Monitoring** | Terminal only | Web UI + CLI + logs |
-| **Automation** | Manual only | Webhook-ready |
-| **Reproducibility** | Depends on local state | Any git commit |
-| **Rollback** | Manual | Via git SHA tags |
 
 ## Recommended Workflow
 
@@ -124,14 +104,7 @@ git commit -m "Add Argo Workflow deployment (similar to solardashboard)"
 git push origin main
 ```
 
-### 2. Sync Workflow Files to Production (One-Time)
-
-```bash
-# Only need to sync the argo directory to production once
-rsync -avz argo/ dgorman@node01.olympusdrive.com:/home/dgorman/Apps/weatherflow-collector/argo/
-```
-
-### 3. Test First Deployment
+### 2. Test First Deployment
 
 ```bash
 # Trigger the workflow
@@ -141,7 +114,7 @@ rsync -avz argo/ dgorman@node01.olympusdrive.com:/home/dgorman/Apps/weatherflow-
 ssh dgorman@node01.olympusdrive.com 'argo logs -n argo @latest -f'
 ```
 
-### 4. Verify Deployment
+### 3. Verify Deployment
 
 ```bash
 # Check pods
