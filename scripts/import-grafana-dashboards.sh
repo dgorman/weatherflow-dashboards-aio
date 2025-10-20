@@ -10,6 +10,18 @@ GRAFANA_USER="${GRAFANA_USER:-}"
 GRAFANA_PASS="${GRAFANA_PASS:-}"
 DASHBOARD_DIR="/Users/dgorman/Dev/weatherflow-collector/grafana/dashboards/weatherflow-collector"
 FOLDER_NAME="Weather"
+GRAFANA_PORT_FORWARD_PID=""
+
+# Cleanup function for port-forward
+cleanup() {
+    if [ -n "$GRAFANA_PORT_FORWARD_PID" ]; then
+        echo ""
+        echo "🧹 Cleaning up port-forward (PID: $GRAFANA_PORT_FORWARD_PID)"
+        kill $GRAFANA_PORT_FORWARD_PID 2>/dev/null || true
+    fi
+}
+
+trap cleanup EXIT
 
 # Check if running on production server
 if [[ $(hostname) == *"olympusdrive"* ]] || [[ $(hostname) == "node"* ]]; then
@@ -20,6 +32,14 @@ if [[ $(hostname) == *"olympusdrive"* ]] || [[ $(hostname) == "node"* ]]; then
     if command -v kubectl &> /dev/null; then
         GRAFANA_USER=$(kubectl get secret grafana-credentials -n weatherflow -o jsonpath='{.data.username}' | base64 -d)
         GRAFANA_PASS=$(kubectl get secret grafana-credentials -n weatherflow -o jsonpath='{.data.password}' | base64 -d)
+        
+        # Use port-forward to access Grafana in solardashboard namespace
+        echo "🔌 Setting up port-forward to Grafana service..."
+        kubectl port-forward -n solardashboard svc/grafana 8080:3000 &>/dev/null &
+        GRAFANA_PORT_FORWARD_PID=$!
+        sleep 3  # Wait for port-forward to establish
+        GRAFANA_URL="http://localhost:8080"
+        echo "   Using: $GRAFANA_URL"
     fi
 fi
 
