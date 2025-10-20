@@ -29,7 +29,7 @@ cd /home/dgorman/Apps/weatherflow-collector
 
 **Configuration:**
 ```
-Name:         WeatherFlow InfluxDB
+Name:         InfluxDB - weatherflow
 Type:         InfluxDB (Flux)
 URL:          http://influxdb.weatherflow.svc.cluster.local:8086
 Organization: weatherflow
