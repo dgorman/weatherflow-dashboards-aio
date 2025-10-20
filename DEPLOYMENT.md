@@ -65,26 +65,26 @@ rsync -avz --exclude '.git/' /Users/dgorman/Dev/weatherflow-collector/argo/ \
 **Standard Deployment Method** (matches SolarDashboard workflow):
 
 ```bash
-# 1. Commit and push your changes to GitHub
+# 1. Commit and push your changes to GitHub from [lab]
 git add .
 git commit -m "Your change description"
 git push origin main
 
-# 2. Trigger Argo Workflow deployment
+# 2. Trigger Argo Workflow on [prod]
 cd /Users/dgorman/Dev/weatherflow-collector
 ./argo/trigger-deploy.sh
 ```
 
-**What the workflow does**:
-1. Clones latest code from GitHub (dgorman/weatherflow-dashboards-aio)
-2. Builds Docker image in Kubernetes cluster with Docker-in-Docker
+**What happens on production [prod]**:
+1. Workflow pulls latest from GitHub
+2. Builds Docker image in Kubernetes cluster (Docker-in-Docker)
 3. Tags with git SHA (e.g., `abc1234`) and `latest`
 4. Pushes to registry.olympusdrive.com/weatherflow-collector
 5. Updates kustomization overlay with versioned image tag
 6. Deploys via kustomize and triggers rollout
 7. Waits for successful rollout (300s timeout)
 
-**Monitor workflow**:
+**Monitor workflow on [prod]**:
 ```bash
 # View workflow logs in real-time
 ssh dgorman@node01.olympusdrive.com 'argo logs -n argo @latest -f'
@@ -96,10 +96,11 @@ ssh dgorman@node01.olympusdrive.com 'argo list -n argo'
 open https://argo.olympusdrive.com
 ```
 
-**Direct workflow submission** (from production):
+**Direct workflow submission on [prod]**:
 ```bash
 ssh dgorman@node01.olympusdrive.com
 cd /home/dgorman/Apps/weatherflow-collector
+git pull origin main
 kubectl create -n argo -f argo/weatherflow-collector-deploy.yaml
 ```
 
