@@ -1,0 +1,197 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: weatherflow-collector-deploy-
+spec:
+  entrypoint: main
+
+  templates:
+  - name: main
+    dag:
+      tasks:
+      - name: clone-repo
+        template: git-clone
+      - name: build-containers
+        dependencies:
+        - clone-repo
+        template: docker-build
+      - name: push-containers
+        dependencies:
+        - build-containers
+        template: docker-push
+      - name: deploy-containers
+        dependencies:
+        - push-containers
+        template: kubernetes-deploy
+
+  - name: git-clone
+    nodeSelector:
+      argo-workflows: "true"
+    container:
+      image: alpine/git
+      command: [sh, -c]
+      args:
+      - |
+        echo "Resetting workdir..."
+        rm -rf /src/weatherflow-collector
+
+        echo "Ensuring /src exists and is writable..."
+        mkdir -p /src/weatherflow-collector
+        chmod -R 777 /src
+
+        echo "Cloning repository..."
+        git clone https://$GIT_USER:$GIT_PAT@github.com/dgorman/weatherflow-dashboards-aio.git /src/weatherflow-collector
+
+        echo "Confirming clone success..."
+        ls -R /src
+
+        echo "Recording git SHA for downstream steps..."
+        git -C /src/weatherflow-collector rev-parse --short HEAD > /src/GIT_SHA
+      env:
+      - name: GIT_USER
+        valueFrom:
+          secretKeyRef:
+            name: github-pat-secret
+            key: GIT_USER
+      - name: GIT_PAT
+        valueFrom:
+          secretKeyRef:
+            name: github-pat-secret
+            key: GIT_PAT
+      volumeMounts:
+      - name: workdir
+        mountPath: /src
+
+  - name: docker-build
+    nodeSelector:
+      argo-workflows: "true"
+    container:
+      image: docker:20.10-dind
+      securityContext:
+        privileged: true
+      command: [sh, -c]
+      args:
+      - |
+        echo "Starting Docker daemon..."
+        dockerd --host=unix:///var/run/docker.sock --storage-driver=vfs --data-root=/var/lib/docker &
+        sleep 20
+
+        echo "Checking Docker status..."
+        docker info || echo "ERROR: Docker is not running!"
+
+        echo "Checking /src exists..."
+        ls -la /src || echo "ERROR: /src is missing!"
+        ls -la /src/weatherflow-collector || echo "ERROR: /src/weatherflow-collector is missing!"
+
+        if [ ! -d "/src/weatherflow-collector" ]; then
+          echo "ERROR: /src/weatherflow-collector is missing!"
+          exit 1
+        fi
+
+        echo "Setting proper permissions on /src..."
+        chmod -R 777 /src
+
+        cd /src/weatherflow-collector
+        if [ ! -f /src/GIT_SHA ]; then
+          echo "ERROR: /src/GIT_SHA was not created."
+          exit 1
+        fi
+
+        export GIT_SHA=$(cat /src/GIT_SHA)
+        echo "Building images for $GIT_SHA..."
+
+        docker build -t registry.olympusdrive.com/weatherflow-collector:latest .
+        docker tag registry.olympusdrive.com/weatherflow-collector:latest \
+          registry.olympusdrive.com/weatherflow-collector:$GIT_SHA
+      volumeMounts:
+      - name: workdir
+        mountPath: /src
+      - name: docker-socket
+        mountPath: /var/run/docker.sock
+
+  - name: docker-push
+    nodeSelector:
+      argo-workflows: "true"
+    container:
+      image: docker:20.10-dind
+      securityContext:
+        privileged: true
+      command: [sh, -c]
+      args:
+      - |
+        echo "Starting Docker daemon..."
+        dockerd --host=unix:///var/run/docker.sock --storage-driver=vfs --data-root=/var/lib/docker &
+        sleep 20
+
+        if [ ! -f /src/GIT_SHA ]; then
+          echo "ERROR: /src/GIT_SHA was not created."
+          exit 1
+        fi
+
+        export GIT_SHA=$(cat /src/GIT_SHA)
+        echo "Pushing Docker images for $GIT_SHA..."
+
+        docker push registry.olympusdrive.com/weatherflow-collector:latest
+        docker push registry.olympusdrive.com/weatherflow-collector:$GIT_SHA
+      volumeMounts:
+      - name: workdir
+        mountPath: /src
+      - name: docker-socket
+        mountPath: /var/run/docker.sock
+
+  - name: kubernetes-deploy
+    nodeSelector:
+      argo-workflows: "true"
+    container:
+      image: bitnami/kubectl:latest
+      command: [sh, -c]
+      args:
+      - |
+        if [ ! -f /src/GIT_SHA ]; then
+          echo "ERROR: /src/GIT_SHA was not created."
+          exit 1
+        fi
+
+        export GIT_SHA=$(cat /src/GIT_SHA)
+        echo "Applying Kubernetes deployments for $GIT_SHA..."
+
+        # Update the image tag in the kustomization overlay
+        cd /src/weatherflow-collector/k8s/overlays/prod
+        
+        # Update the image tag to the git SHA
+        cat > kustomization.yaml <<EOF
+        apiVersion: kustomize.config.k8s.io/v1beta1
+        kind: Kustomization
+
+        namespace: weatherflow
+
+        bases:
+          - ../../base
+
+        images:
+          - name: registry.olympusdrive.com/weatherflow-collector
+            newTag: $GIT_SHA
+
+        commonLabels:
+          environment: production
+        EOF
+
+        echo "Applying Kubernetes manifests..."
+        kubectl apply -k /src/weatherflow-collector/k8s/overlays/prod
+
+        echo "Rolling out updates..."
+        kubectl rollout restart deployment weatherflow-collector -n weatherflow
+        kubectl rollout status deployment weatherflow-collector -n weatherflow --timeout=300s
+        
+        echo "Deployment complete!"
+      volumeMounts:
+      - name: workdir
+        mountPath: /src
+
+  volumes:
+  - name: workdir
+    persistentVolumeClaim:
+      claimName: argo-workdir-pvc
+  - name: docker-socket
+    hostPath:
+      path: /var/run/docker.sock

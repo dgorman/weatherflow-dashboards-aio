@@ -15,38 +15,92 @@
 - **Registry**: registry.olympusdrive.com
 - **Storage**: Longhorn (10Gi PVC)
 
-## Quick Commands
+## Deployment Workflow
+
+### Standard Process (Git-Based CI/CD)
+
+```bash
+# 1. Make changes locally
+cd /Users/dgorman/Dev/weatherflow-collector
+# ... edit files ...
+
+# 2. Test locally
+docker-compose up -d
+
+# 3. Commit and push to GitHub
+git add .
+git commit -m "Description of changes"
+git push origin main
+
+# 4. Deploy to production via Argo Workflow
+./argo/trigger-deploy.sh
+
+# 5. Monitor deployment
+ssh dgorman@node01.olympusdrive.com 'argo logs -n argo @latest -f'
+```
 
 ### Initial Production Setup (One-Time)
-```bash
-# From local dev machine
-cd /Users/dgorman/Dev/weatherflow-collector
-./setup.sh
-```
 
-**What it does**:
-1. Syncs code to node01.olympusdrive.com
-2. Creates Argo CD application `weatherflow-collector`
-3. Displays next steps
+**Prerequisites**:
+- Argo Workflows installed in `argo` namespace
+- GitHub PAT secret configured: `github-pat-secret`
+- Persistent Volume Claim: `argo-workdir-pvc`
+- Node labeled with `argo-workflows=true`
+
+**First deployment**:
+```bash
+# 1. Push code to GitHub
+git push origin main
+
+# 2. Sync workflow files to production
+rsync -avz --exclude '.git/' /Users/dgorman/Dev/weatherflow-collector/argo/ \
+  dgorman@node01.olympusdrive.com:/home/dgorman/Apps/weatherflow-collector/argo/
+
+# 3. Trigger first deployment
+./argo/trigger-deploy.sh
+```
 
 ### Deploy/Update Production
+
+**Standard Deployment Method** (matches SolarDashboard workflow):
+
 ```bash
-# From local dev machine
+# 1. Commit and push your changes to GitHub
+git add .
+git commit -m "Your change description"
+git push origin main
+
+# 2. Trigger Argo Workflow deployment
 cd /Users/dgorman/Dev/weatherflow-collector
-./deploy.sh
+./argo/trigger-deploy.sh
 ```
 
-**What it does**:
-1. Syncs latest code to remote
-2. Builds Docker image on node01
-3. Pushes to registry.olympusdrive.com/weatherflow-collector:latest
-4. Deploys via Argo CD (or kubectl if Argo CD not available)
-5. Waits for rollout completion
-6. Shows status and log commands
+**What the workflow does**:
+1. Clones latest code from GitHub (dgorman/weatherflow-dashboards-aio)
+2. Builds Docker image in Kubernetes cluster with Docker-in-Docker
+3. Tags with git SHA (e.g., `abc1234`) and `latest`
+4. Pushes to registry.olympusdrive.com/weatherflow-collector
+5. Updates kustomization overlay with versioned image tag
+6. Deploys via kustomize and triggers rollout
+7. Waits for successful rollout (300s timeout)
 
-### Optional: Deploy with Specific Tag
+**Monitor workflow**:
 ```bash
-./deploy.sh v1.0.0
+# View workflow logs in real-time
+ssh dgorman@node01.olympusdrive.com 'argo logs -n argo @latest -f'
+
+# List all workflows
+ssh dgorman@node01.olympusdrive.com 'argo list -n argo'
+
+# Or use Web UI
+open https://argo.olympusdrive.com
+```
+
+**Direct workflow submission** (from production):
+```bash
+ssh dgorman@node01.olympusdrive.com
+cd /home/dgorman/Apps/weatherflow-collector
+kubectl create -n argo -f argo/weatherflow-collector-deploy.yaml
 ```
 
 ## Monitoring Production
@@ -208,13 +262,15 @@ ssh dgorman@node01.olympusdrive.com 'argocd app sync weatherflow-collector --pru
 weatherflow-collector/
 ├── docker-compose.yml          # Local development stack
 ├── Dockerfile                  # Collector container image
-├── setup.sh                    # Initial production setup
-├── deploy.sh                   # Deployment automation
 ├── README.md                   # Main documentation
 ├── DEPLOYMENT.md               # This file
+├── argo/                       # ⭐ Argo Workflows CI/CD
+│   ├── README.md              # Workflow documentation
+│   ├── weatherflow-collector-deploy.yaml  # Workflow definition
+│   └── trigger-deploy.sh      # Helper script to submit workflow
 ├── k8s/
 │   ├── README.md              # Kubernetes deployment docs
-│   ├── argocd-application.yaml # Argo CD app definition
+│   ├── argocd-application.yaml # Argo CD app definition (legacy)
 │   ├── base/                  # Base Kubernetes manifests
 │   │   ├── namespace.yaml
 │   │   ├── influxdb-pvc.yaml
@@ -233,14 +289,16 @@ weatherflow-collector/
 
 ## Next Steps After Deployment
 
-1. **Run initial setup**:
+1. **Push code to GitHub**:
    ```bash
-   ./setup.sh
+   git add .
+   git commit -m "Initial deployment"
+   git push origin main
    ```
 
-2. **Deploy to production**:
+2. **Deploy to production via Argo Workflow**:
    ```bash
-   ./deploy.sh
+   ./argo/trigger-deploy.sh
    ```
 
 3. **Verify pods running**:
