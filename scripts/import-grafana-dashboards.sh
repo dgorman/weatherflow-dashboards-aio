@@ -98,26 +98,18 @@ import_dashboard() {
     
     echo "📊 Importing: $dashboard_name"
     
-    # Read dashboard JSON
-    DASHBOARD_JSON=$(cat "$file")
-    
-    # Create import payload
-    IMPORT_PAYLOAD=$(cat <<EOF
-{
-  "dashboard": $DASHBOARD_JSON,
-  "folderUid": "$folder_uid",
-  "overwrite": true,
-  "message": "Imported via script"
-}
-EOF
-)
+    # Read dashboard JSON and create import payload
+    local temp_payload=$(mktemp)
+    cat "$file" | jq -c --arg uid "$folder_uid" '{dashboard: ., folderUid: $uid, overwrite: true, message: "Imported via script"}' > "$temp_payload"
     
     # Import dashboard
     IMPORT_RESPONSE=$(curl -s -X POST \
         -H "Content-Type: application/json" \
         -u "$GRAFANA_USER:$GRAFANA_PASS" \
         "$GRAFANA_URL/api/dashboards/db" \
-        -d "$IMPORT_PAYLOAD")
+        -d @"$temp_payload")
+    
+    rm -f "$temp_payload"
     
     if echo "$IMPORT_RESPONSE" | grep -q '"status":"success"'; then
         DASHBOARD_URL=$(echo $IMPORT_RESPONSE | grep -o '"url":"[^"]*"' | sed 's/"url":"\([^"]*\)"/\1/')
