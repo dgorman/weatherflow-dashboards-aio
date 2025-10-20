@@ -42,7 +42,7 @@ services:
       WEATHERFLOW_COLLECTOR_API_TOKEN: a1af9766-cf15-429b-8bbc-8c40bcda2314
     depends_on:
       - "wxfdashboardsaio_influxdb"
-    image: lux4rd0/weatherflow-collector:latest
+    image: weatherflow-collector:dev-fix
     restart: always
 volumes:
   wxfdashboardsaio-influxdb-data: 
