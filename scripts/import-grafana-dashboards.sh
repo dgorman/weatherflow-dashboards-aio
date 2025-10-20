@@ -151,9 +151,9 @@ for dashboard in "$DASHBOARD_DIR"/*.json; do
     fi
     
     if import_dashboard "$dashboard" "$FOLDER_UID"; then
-        ((SUCCESS_COUNT++))
+        SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
     else
-        ((FAIL_COUNT++))
+        FAIL_COUNT=$((FAIL_COUNT + 1))
     fi
     echo ""
 done
