@@ -14,7 +14,7 @@ FOLDER_NAME="Weather"
 # Check if running on production server
 if [[ $(hostname) == *"olympusdrive"* ]] || [[ $(hostname) == "node"* ]]; then
     echo "📍 Running on production server, using K8s secret for credentials"
-    DASHBOARD_DIR="/home/dgorman/Apps/weatherflow-dashboards-aio/grafana/dashboards/weatherflow-collector"
+    DASHBOARD_DIR="/home/dgorman/Apps/weatherflow-collector/grafana/dashboards/weatherflow-collector"
     
     # Get credentials from K8s secret
     if command -v kubectl &> /dev/null; then
