@@ -60,7 +60,7 @@ echo ""
 
 # Function to create folder
 create_folder() {
-    echo "📁 Creating folder: $FOLDER_NAME"
+    echo "📁 Creating folder: $FOLDER_NAME" >&2
     
     FOLDER_RESPONSE=$(curl -s -X POST \
         -H "Content-Type: application/json" \
@@ -72,7 +72,7 @@ create_folder() {
     
     if [ -z "$FOLDER_UID" ]; then
         # Folder might already exist, try to get it
-        echo "   Folder might already exist, fetching..."
+        echo "   Folder might already exist, fetching..." >&2
         FOLDER_RESPONSE=$(curl -s -X GET \
             -u "$GRAFANA_USER:$GRAFANA_PASS" \
             "$GRAFANA_URL/api/folders")
@@ -81,11 +81,11 @@ create_folder() {
     fi
     
     if [ -z "$FOLDER_UID" ]; then
-        echo "❌ Failed to create or find folder. Response: $FOLDER_RESPONSE"
+        echo "❌ Failed to create or find folder. Response: $FOLDER_RESPONSE" >&2
         exit 1
     fi
     
-    echo "✅ Folder UID: $FOLDER_UID"
+    echo "✅ Folder UID: $FOLDER_UID" >&2
     echo "$FOLDER_UID"
 }
 
