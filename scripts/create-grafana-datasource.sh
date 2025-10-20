@@ -8,7 +8,7 @@ set -e
 GRAFANA_URL="${GRAFANA_URL:-http://grafana.olympusdrive.com}"
 GRAFANA_USER="${GRAFANA_USER:-}"
 GRAFANA_PASS="${GRAFANA_PASS:-}"
-DATASOURCE_NAME="WeatherFlow InfluxDB"
+DATASOURCE_NAME="InfluxDB - weatherflow"
 GRAFANA_PORT_FORWARD_PID=""
 
 # Cleanup function for port-forward
