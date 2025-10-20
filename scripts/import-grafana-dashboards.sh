@@ -68,7 +68,7 @@ create_folder() {
         "$GRAFANA_URL/api/folders" \
         -d "{\"title\":\"$FOLDER_NAME\"}")
     
-    FOLDER_UID=$(echo $FOLDER_RESPONSE | grep -o '"uid":"[^"]*"' | sed 's/"uid":"\([^"]*\)"/\1/')
+    FOLDER_UID=$(echo "$FOLDER_RESPONSE" | jq -r '.uid // empty')
     
     if [ -z "$FOLDER_UID" ]; then
         # Folder might already exist, try to get it
@@ -77,11 +77,11 @@ create_folder() {
             -u "$GRAFANA_USER:$GRAFANA_PASS" \
             "$GRAFANA_URL/api/folders")
         
-        FOLDER_UID=$(echo $FOLDER_RESPONSE | grep -o "\"uid\":\"[^\"]*\",\"title\":\"$FOLDER_NAME\"" | sed 's/.*"uid":"\([^"]*\)".*/\1/')
+        FOLDER_UID=$(echo "$FOLDER_RESPONSE" | jq -r ".[] | select(.title==\"$FOLDER_NAME\") | .uid")
     fi
     
     if [ -z "$FOLDER_UID" ]; then
-        echo "❌ Failed to create or find folder"
+        echo "❌ Failed to create or find folder. Response: $FOLDER_RESPONSE"
         exit 1
     fi
     
