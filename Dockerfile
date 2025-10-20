@@ -13,7 +13,7 @@ RUN --mount=type=cache,target=/root/.cache/pip \
     pip install --no-cache-dir -r requirements.txt
 
 # Copy all files and folders from src directory, excluding those in Dockerfile.dockerignore
-COPY . .
+COPY src/ ./
 
 # Run your Python script
-CMD ["python3", "./weatherflow-collector.py"]
+CMD ["python3", "weatherflow-collector.py"]
