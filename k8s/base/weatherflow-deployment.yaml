@@ -49,6 +49,8 @@ spec:
           value: "false"
         - name: WEATHERFLOW_COLLECTOR_DEBUG
           value: "true"
+        - name: WEATHERFLOW_COLLECTOR_VINEYARD_VANTAGE_HANDLER_ENABLED
+          value: "false"
         resources:
           requests:
             memory: "128Mi"
