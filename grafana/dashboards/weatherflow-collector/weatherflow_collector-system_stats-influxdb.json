@@ -3140,8 +3140,8 @@
           },
           {
             "selected": false,
-            "text": "remote-forecast",
-            "value": "remote-forecast"
+            "text": "collector_forecast",
+            "value": "collector_forecast"
           },
           {
             "selected": false,

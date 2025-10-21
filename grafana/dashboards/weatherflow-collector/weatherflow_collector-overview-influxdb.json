@@ -1227,7 +1227,7 @@
               "condition": "AND",
               "key": "collector_type",
               "operator": "=",
-              "value": "remote-forecast"
+              "value": "collector_forecast"
             }
           ]
         }
@@ -2247,7 +2247,7 @@
               "condition": "AND",
               "key": "collector_type",
               "operator": "=",
-              "value": "remote-forecast"
+              "value": "collector_forecast"
             }
           ]
         }
@@ -4277,7 +4277,7 @@
               "condition": "AND",
               "key": "collector_type",
               "operator": "=",
-              "value": "remote-forecast"
+              "value": "collector_forecast"
             }
           ]
         }
