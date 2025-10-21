@@ -25,7 +25,9 @@ services:
       context: .
       dockerfile: Dockerfile
     command: python weatherflow-collector.py
-    network_mode: host
+    ports:
+      - "50222:50222/udp"
+      - "6789:6789/tcp"
     environment:
       TZ: America/Denver
       WEATHERFLOW_COLLECTOR_DEBUG: "true"
@@ -33,7 +35,7 @@ services:
       WEATHERFLOW_COLLECTOR_COLLECTOR_UDP_ENABLED: "true"
       WEATHERFLOW_COLLECTOR_HEALTHCHECK: "true"
       WEATHERFLOW_COLLECTOR_HOST_HOSTNAME: MBP.olympusdrive.com
-      WEATHERFLOW_COLLECTOR_INFLUXDB_URL: http://localhost:8086
+      WEATHERFLOW_COLLECTOR_INFLUXDB_URL: http://weatherflow-influxdb:8086
       WEATHERFLOW_COLLECTOR_INFLUXDB_TOKEN: weatherflow-admin-token-12345
       WEATHERFLOW_COLLECTOR_INFLUXDB_ORG: weatherflow
       WEATHERFLOW_COLLECTOR_INFLUXDB_BUCKET: weatherflow
