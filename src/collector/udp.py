@@ -103,11 +103,10 @@ class UDPCollector:
                 
                 # Create an asyncio Datagram Endpoint using the configured socket
                 loop = asyncio.get_running_loop()
-                listen = loop.create_datagram_endpoint(
+                self.transport, _ = await loop.create_datagram_endpoint(
                     lambda: UDPProtocol(self),
                     sock=sock,  # Use the pre-configured socket
                 )
-                self.transport, _ = await listen
                 logger_UDPCollector.info(
                     f"Listening for UDP broadcast traffic on port {self.port}"
                 )
