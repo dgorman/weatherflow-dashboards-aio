@@ -147,6 +147,8 @@ class UDPCollector:
 
             # Decode the data and add metadata
             collector_data_with_metadata = self.decode_data_and_add_metadata(data)
+            logger_UDPCollector.info(f"DEBUG: Decoded structure from {addr}: {collector_data_with_metadata}")
+            
             if collector_data_with_metadata is not None:
                 # Publish the data using the event manager
                 await self.event_manager.publish(
