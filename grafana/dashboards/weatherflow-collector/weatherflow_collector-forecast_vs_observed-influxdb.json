@@ -312,7 +312,7 @@
       "pluginVersion": "7.5.2",
       "targets": [
         {
-          "alias": "$tag_forecast_hourly_days_out Days Out",
+          "alias": "$tag_number_of_days_out Days Out",
           "groupBy": [
             {
               "params": [
@@ -699,7 +699,7 @@
       "pluginVersion": "7.5.2",
       "targets": [
         {
-          "alias": "$tag_forecast_hourly_days_out Days Out",
+          "alias": "$tag_number_of_days_out Days Out",
           "groupBy": [
             {
               "params": [
@@ -1068,7 +1068,7 @@
       "pluginVersion": "7.5.2",
       "targets": [
         {
-          "alias": "$tag_forecast_hourly_days_out Days Out",
+          "alias": "$tag_number_of_days_out Days Out",
           "groupBy": [
             {
               "params": [
@@ -1441,7 +1441,7 @@
       "pluginVersion": "7.5.2",
       "targets": [
         {
-          "alias": "$tag_forecast_hourly_days_out Days Out",
+          "alias": "$tag_number_of_days_out Days Out",
           "groupBy": [
             {
               "params": [
@@ -1828,7 +1828,7 @@
       "pluginVersion": "7.5.2",
       "targets": [
         {
-          "alias": "$tag_forecast_hourly_days_out Days Out",
+          "alias": "$tag_number_of_days_out Days Out",
           "groupBy": [
             {
               "params": [
@@ -2213,7 +2213,7 @@
       "pluginVersion": "7.5.2",
       "targets": [
         {
-          "alias": "$tag_forecast_hourly_days_out Days Out",
+          "alias": "$tag_number_of_days_out Days Out",
           "groupBy": [
             {
               "params": [
@@ -2339,7 +2339,7 @@
           "value": "$__all"
         },
         "datasource": "InfluxDB - weatherflow",
-        "definition": "SHOW TAG VALUES WITH KEY = \"forecast_hourly_days_out\"",
+        "definition": "SHOW TAG VALUES WITH KEY = \"number_of_days_out\"",
         "description": null,
         "error": null,
         "hide": 0,
@@ -2348,7 +2348,7 @@
         "multi": false,
         "name": "number_of_days_out",
         "options": [],
-        "query": "SHOW TAG VALUES WITH KEY = \"forecast_hourly_days_out\"",
+        "query": "SHOW TAG VALUES WITH KEY = \"number_of_days_out\"",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
