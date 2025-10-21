@@ -60,6 +60,7 @@ class UDPProtocol(asyncio.DatagramProtocol):
         self.collector = collector
 
     def datagram_received(self, data, addr):
+        logger_UDPCollector.debug(f"Received datagram from {addr}, {len(data)} bytes")
         try:
             asyncio.create_task(self.collector.handle_data(data, addr))
         except Exception as e:
