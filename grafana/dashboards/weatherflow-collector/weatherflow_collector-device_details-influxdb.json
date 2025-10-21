@@ -190,7 +190,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ]
         },
@@ -234,7 +234,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ]
         },
@@ -280,7 +280,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ]
         }
@@ -407,7 +407,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ]
         }
@@ -668,7 +668,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ],
           "tz": ""
@@ -707,7 +707,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ]
         },
@@ -751,7 +751,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ]
         },
@@ -795,7 +795,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ]
         },
@@ -839,7 +839,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ]
         },
@@ -877,7 +877,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ]
         },
@@ -915,7 +915,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ]
         }
@@ -1295,7 +1295,7 @@
               "condition": "AND",
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ],
           "tz": ""
@@ -1340,7 +1340,7 @@
               "condition": "AND",
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ]
         },
@@ -1390,7 +1390,7 @@
               "condition": "AND",
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ]
         },
@@ -1440,7 +1440,7 @@
               "condition": "AND",
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ]
         },
@@ -1490,7 +1490,7 @@
               "condition": "AND",
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ]
         },
@@ -1534,7 +1534,7 @@
               "condition": "AND",
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ]
         }
@@ -1712,7 +1712,7 @@
               "condition": "AND",
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ]
         }
@@ -1902,7 +1902,7 @@
               "condition": "AND",
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ]
         }
@@ -2093,7 +2093,7 @@
               "condition": "AND",
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ]
         }
@@ -2284,7 +2284,7 @@
               "condition": "AND",
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ]
         }
@@ -2475,7 +2475,7 @@
               "condition": "AND",
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ]
         }
@@ -2666,7 +2666,7 @@
               "condition": "AND",
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ]
         }
@@ -2857,7 +2857,7 @@
               "condition": "AND",
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ]
         }
@@ -3048,7 +3048,7 @@
               "condition": "AND",
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ]
         }
@@ -3238,7 +3238,7 @@
               "condition": "AND",
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ]
         }
@@ -3429,7 +3429,7 @@
               "condition": "AND",
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ]
         }
@@ -3494,38 +3494,11 @@
         "allValue": null,
         "current": {
           "selected": false,
-          "text": "Buzzard Bend",
-          "value": "Buzzard Bend"
-        },
-        "datasource": "InfluxDB - weatherflow",
-        "definition": "SHOW TAG VALUES WITH KEY = \"station_name\"",
-        "description": null,
-        "error": null,
-        "hide": 0,
-        "includeAll": false,
-        "label": "Station Name",
-        "multi": false,
-        "name": "station_name",
-        "options": [],
-        "query": "SHOW TAG VALUES WITH KEY = \"station_name\"",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 5,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": null,
-        "current": {
-          "selected": false,
           "text": "HB-00031245",
           "value": "HB-00031245"
         },
         "datasource": "InfluxDB - weatherflow",
-        "definition": "SHOW TAG VALUES WITH KEY = \"hub_sn\"  WHERE \"station_name\" =~ /^$station_name$/",
+        "definition": "SHOW TAG VALUES WITH KEY = \"hub_sn\"  WHERE \"station_name\" =~ /^Olympus$/",
         "description": null,
         "error": null,
         "hide": 0,
@@ -3534,7 +3507,7 @@
         "multi": false,
         "name": "hub_sn",
         "options": [],
-        "query": "SHOW TAG VALUES WITH KEY = \"hub_sn\"  WHERE \"station_name\" =~ /^$station_name$/",
+        "query": "SHOW TAG VALUES WITH KEY = \"hub_sn\"  WHERE \"station_name\" =~ /^Olympus$/",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -3552,7 +3525,7 @@
           "value": "ST-00028209"
         },
         "datasource": "InfluxDB - weatherflow",
-        "definition": "SHOW TAG VALUES WITH KEY = \"serial_number\"  WHERE \"station_name\" =~ /^$station_name$/",
+        "definition": "SHOW TAG VALUES WITH KEY = \"serial_number\"  WHERE \"station_name\" =~ /^Olympus$/",
         "description": null,
         "error": null,
         "hide": 0,
@@ -3561,7 +3534,7 @@
         "multi": false,
         "name": "serial_number",
         "options": [],
-        "query": "SHOW TAG VALUES WITH KEY = \"serial_number\"  WHERE \"station_name\" =~ /^$station_name$/",
+        "query": "SHOW TAG VALUES WITH KEY = \"serial_number\"  WHERE \"station_name\" =~ /^Olympus$/",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,

@@ -41,7 +41,7 @@
       "id": 28,
       "panels": [],
       "repeat": "station_name",
-      "title": "$station_name",
+      "title": "Olympus",
       "type": "row"
     },
     {
@@ -277,10 +277,10 @@
               "condition": "AND",
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "Feels Like",
@@ -334,10 +334,10 @@
               "condition": "AND",
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "Heat Index",
@@ -391,10 +391,10 @@
               "condition": "AND",
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "Wind Chill",
@@ -416,7 +416,7 @@
           "measurement": "weatherflow_obs",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"wind_chill\") * 9/5 + 32 FROM \"weatherflow_obs\" WHERE (\"collector_type\" =~ /^$collector_type$/ AND \"station_name\" =~ /^$station_name$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
+          "query": "SELECT mean(\"wind_chill\") * 9/5 + 32 FROM \"weatherflow_obs\" WHERE (\"collector_type\" =~ /^$collector_type$/ AND \"station_name\" =~ /^Olympus$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
           "rawQuery": false,
           "refId": "D",
           "resultFormat": "time_series",
@@ -450,10 +450,10 @@
               "condition": "AND",
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "Dry Bulb",
@@ -474,7 +474,7 @@
           "hide": false,
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"delta_t\") + mean(\"wet_bulb_temperature\") * 9/5 + 32 FROM \"weatherflow_obs\" WHERE (\"collector_type\" =~ /^$collector_type$/ AND \"station_name\" =~ /^$station_name$/) AND $timeFilter GROUP BY time($__interval)  tz('$tz')",
+          "query": "SELECT mean(\"delta_t\") + mean(\"wet_bulb_temperature\") * 9/5 + 32 FROM \"weatherflow_obs\" WHERE (\"collector_type\" =~ /^$collector_type$/ AND \"station_name\" =~ /^Olympus$/) AND $timeFilter GROUP BY time($__interval)  tz('America/Denver')",
           "rawQuery": true,
           "refId": "E",
           "resultFormat": "time_series",
@@ -514,7 +514,7 @@
           "measurement": "weatherflow_obs",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"wind_chill\") * 9/5 + 32 FROM \"weatherflow_obs\" WHERE (\"collector_type\" =~ /^$collector_type$/ AND \"station_name\" =~ /^$station_name$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
+          "query": "SELECT mean(\"wind_chill\") * 9/5 + 32 FROM \"weatherflow_obs\" WHERE (\"collector_type\" =~ /^$collector_type$/ AND \"station_name\" =~ /^Olympus$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
           "rawQuery": false,
           "refId": "F",
           "resultFormat": "time_series",
@@ -548,10 +548,10 @@
               "condition": "AND",
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "Dew Point",
@@ -573,7 +573,7 @@
           "measurement": "weatherflow_obs",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"wind_chill\") * 9/5 + 32 FROM \"weatherflow_obs\" WHERE (\"collector_type\" =~ /^$collector_type$/ AND \"station_name\" =~ /^$station_name$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
+          "query": "SELECT mean(\"wind_chill\") * 9/5 + 32 FROM \"weatherflow_obs\" WHERE (\"collector_type\" =~ /^$collector_type$/ AND \"station_name\" =~ /^Olympus$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
           "rawQuery": false,
           "refId": "G",
           "resultFormat": "time_series",
@@ -607,10 +607,10 @@
               "condition": "AND",
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         }
       ],
       "timeFrom": null,
@@ -754,7 +754,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -763,7 +763,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "Air Density",
@@ -811,7 +811,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -820,7 +820,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         }
       ],
       "timeFrom": null,
@@ -946,7 +946,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -955,7 +955,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         }
       ],
       "timeFrom": null,
@@ -1073,7 +1073,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -1082,7 +1082,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         }
       ],
       "timeFrom": null,
@@ -1282,7 +1282,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -1291,7 +1291,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "Illuminance",
@@ -1333,7 +1333,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -1342,7 +1342,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "UV",
@@ -1384,7 +1384,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -1393,7 +1393,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         }
       ],
       "timeFrom": null,
@@ -1584,7 +1584,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -1593,7 +1593,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         }
       ],
       "timeFrom": "60s",
@@ -1722,7 +1722,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -1731,7 +1731,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         }
       ],
       "timeFrom": "60s",
@@ -1958,7 +1958,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -1967,7 +1967,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "Average",
@@ -2015,7 +2015,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -2024,7 +2024,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "Lull",
@@ -2072,7 +2072,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -2081,7 +2081,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         }
       ],
       "timeFrom": null,
@@ -2238,7 +2238,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -2247,7 +2247,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "Accumulated Rain",
@@ -2295,7 +2295,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -2304,7 +2304,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         }
       ],
       "timeFrom": null,
@@ -2389,7 +2389,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -2398,7 +2398,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "Strike Count",
@@ -2420,7 +2420,7 @@
           "measurement": "weatherflow_obs",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"lightning_strike_count\") FROM \"weatherflow_obs\" WHERE (\"station_name\" =~ /^$station_name$/ AND \"collector_type\" =~ /^$collector_type$/) AND lightning_strike_last_distance <= 42 AND lightning_strike_last_distance >= 1 AND $timeFilter GROUP BY time(1s) fill(null)",
+          "query": "SELECT mean(\"lightning_strike_count\") FROM \"weatherflow_obs\" WHERE (\"station_name\" =~ /^Olympus$/ AND \"collector_type\" =~ /^$collector_type$/) AND lightning_strike_last_distance <= 42 AND lightning_strike_last_distance >= 1 AND $timeFilter GROUP BY time(1s) fill(null)",
           "rawQuery": true,
           "refId": "B",
           "resultFormat": "time_series",
@@ -2442,7 +2442,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -2451,11 +2451,11 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "hide": false,
-          "query": "SELECT distinct(\"distance\") * 0.62137 FROM \"weatherflow_evt_strike\" WHERE (\"station_name\" =~ /^$station_name$/ AND \"collector_type\" =~ /^$collector_type$/) AND distance <= 42 AND distance >= 1 AND $timeFilter GROUP BY time(1s) fill(null)",
+          "query": "SELECT distinct(\"distance\") * 0.62137 FROM \"weatherflow_evt_strike\" WHERE (\"station_name\" =~ /^Olympus$/ AND \"collector_type\" =~ /^$collector_type$/) AND distance <= 42 AND distance >= 1 AND $timeFilter GROUP BY time(1s) fill(null)",
           "rawQuery": true,
           "refId": "C"
         }
@@ -2495,64 +2495,6 @@
   ],
   "templating": {
     "list": [
-      {
-        "allValue": null,
-        "current": {
-          "selected": true,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
-        },
-        "datasource": "InfluxDB - weatherflow",
-        "definition": "SHOW TAG VALUES WITH KEY = \"station_name\"",
-        "description": null,
-        "error": null,
-        "hide": 0,
-        "includeAll": true,
-        "label": "Station Name",
-        "multi": true,
-        "name": "station_name",
-        "options": [],
-        "query": "SHOW TAG VALUES WITH KEY = \"station_name\"",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 5,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": null,
-        "current": {
-          "selected": false,
-          "text": "America/Chicago",
-          "value": "America/Chicago"
-        },
-        "datasource": "InfluxDB - weatherflow",
-        "definition": "SHOW TAG VALUES WITH KEY = \"timezone\"",
-        "description": null,
-        "error": null,
-        "hide": 0,
-        "includeAll": false,
-        "label": "Time Zone",
-        "multi": false,
-        "name": "tz",
-        "options": [],
-        "query": "SHOW TAG VALUES WITH KEY = \"timezone\"",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 5,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
       {
         "allValue": null,
         "current": {

@@ -42,7 +42,7 @@
       "id": 51,
       "panels": [],
       "repeat": "station_name",
-      "title": "$station_name",
+      "title": "Olympus",
       "type": "row"
     },
     {
@@ -734,7 +734,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -743,7 +743,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "L - Air",
@@ -785,7 +785,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -794,7 +794,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "H - Feels",
@@ -836,7 +836,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -845,7 +845,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "L - Feels",
@@ -887,7 +887,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -896,7 +896,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "H - Heat Index",
@@ -938,7 +938,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -947,7 +947,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "L - Heat Index",
@@ -989,7 +989,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -998,7 +998,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "H - W Chill",
@@ -1040,7 +1040,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -1049,7 +1049,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "L - W Chill",
@@ -1091,7 +1091,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -1100,7 +1100,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "H - Dry Bulb",
@@ -1116,7 +1116,7 @@
           "measurement": "weatherflow_obs",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT max(\"delta_t\") + max(\"wet_bulb_temperature\") * 9/5 + 32 FROM \"weatherflow_obs\" WHERE (\"collector_type\" =~ /^$collector_type$/ AND \"station_name\" =~ /^$station_name$/) AND $timeFilter GROUP BY time($__interval) tz('$tz')",
+          "query": "SELECT max(\"delta_t\") + max(\"wet_bulb_temperature\") * 9/5 + 32 FROM \"weatherflow_obs\" WHERE (\"collector_type\" =~ /^$collector_type$/ AND \"station_name\" =~ /^Olympus$/) AND $timeFilter GROUP BY time($__interval) tz('America/Denver')",
           "rawQuery": true,
           "refId": "G",
           "resultFormat": "time_series",
@@ -1144,7 +1144,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -1153,7 +1153,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "L - Dry Bulb",
@@ -1169,7 +1169,7 @@
           "measurement": "weatherflow_obs",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT min(\"delta_t\") + min(\"wet_bulb_temperature\") * 9/5 + 32 FROM \"weatherflow_obs\" WHERE (\"collector_type\" =~ /^$collector_type$/ AND \"station_name\" =~ /^$station_name$/) AND $timeFilter GROUP BY time($__interval) tz('$tz')",
+          "query": "SELECT min(\"delta_t\") + min(\"wet_bulb_temperature\") * 9/5 + 32 FROM \"weatherflow_obs\" WHERE (\"collector_type\" =~ /^$collector_type$/ AND \"station_name\" =~ /^Olympus$/) AND $timeFilter GROUP BY time($__interval) tz('America/Denver')",
           "rawQuery": true,
           "refId": "H",
           "resultFormat": "time_series",
@@ -1197,7 +1197,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -1206,7 +1206,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "H - Wet Bulb",
@@ -1248,7 +1248,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -1257,7 +1257,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "L - Wet Bulb",
@@ -1299,7 +1299,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -1308,7 +1308,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "H - Dew Point",
@@ -1350,7 +1350,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -1359,7 +1359,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "L - Dew Point",
@@ -1401,7 +1401,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -1410,7 +1410,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         }
       ],
       "timeFrom": null,
@@ -1605,7 +1605,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -1656,7 +1656,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -1713,7 +1713,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -1909,7 +1909,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -1918,7 +1918,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "Low",
@@ -1960,7 +1960,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -1969,7 +1969,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         }
       ],
       "timeFrom": null,
@@ -2123,7 +2123,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -2132,7 +2132,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "Low",
@@ -2174,7 +2174,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -2183,7 +2183,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         }
       ],
       "timeFrom": null,
@@ -2338,7 +2338,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -2347,7 +2347,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "Low",
@@ -2389,7 +2389,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -2398,7 +2398,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         }
       ],
       "timeFrom": null,
@@ -2553,7 +2553,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -2562,7 +2562,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "Low",
@@ -2604,7 +2604,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -2613,7 +2613,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         }
       ],
       "timeFrom": null,
@@ -2768,7 +2768,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -2777,7 +2777,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "Low",
@@ -2819,7 +2819,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -2828,7 +2828,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         }
       ],
       "timeFrom": null,
@@ -2972,7 +2972,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -2981,7 +2981,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "Low",
@@ -3017,7 +3017,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -3026,7 +3026,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         }
       ],
       "timeFrom": null,
@@ -3176,7 +3176,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -3185,7 +3185,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "Low",
@@ -3227,7 +3227,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -3236,7 +3236,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         }
       ],
       "timeFrom": null,
@@ -3390,7 +3390,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -3399,7 +3399,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "Low",
@@ -3447,7 +3447,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -3456,7 +3456,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         }
       ],
       "timeFrom": null,
@@ -3620,7 +3620,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -3629,7 +3629,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "Average",
@@ -3671,7 +3671,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -3680,7 +3680,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "Lull",
@@ -3722,7 +3722,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -3731,7 +3731,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         }
       ],
       "timeFrom": null,
@@ -3902,7 +3902,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -3911,7 +3911,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "Illuminance",
@@ -3947,7 +3947,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -3956,7 +3956,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         },
         {
           "alias": "UV",
@@ -3992,7 +3992,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -4001,7 +4001,7 @@
               "value": "/^$collector_type$/"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         }
       ],
       "timeFrom": null,
@@ -4018,64 +4018,6 @@
   ],
   "templating": {
     "list": [
-      {
-        "allValue": null,
-        "current": {
-          "selected": true,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
-        },
-        "datasource": "InfluxDB - weatherflow",
-        "definition": "SHOW TAG VALUES WITH KEY = \"station_name\"",
-        "description": null,
-        "error": null,
-        "hide": 0,
-        "includeAll": true,
-        "label": "Station Name",
-        "multi": true,
-        "name": "station_name",
-        "options": [],
-        "query": "SHOW TAG VALUES WITH KEY = \"station_name\"",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 5,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": null,
-        "current": {
-          "selected": true,
-          "text": "America/Denver",
-          "value": "America/Denver"
-        },
-        "datasource": "InfluxDB - weatherflow",
-        "definition": "SHOW TAG VALUES WITH KEY = \"station_time_zone\"",
-        "description": null,
-        "error": null,
-        "hide": 0,
-        "includeAll": false,
-        "label": "Time Zone",
-        "multi": false,
-        "name": "tz",
-        "options": [],
-        "query": "SHOW TAG VALUES WITH KEY = \"station_time_zone\"",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 5,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
       {
         "allValue": null,
         "current": {

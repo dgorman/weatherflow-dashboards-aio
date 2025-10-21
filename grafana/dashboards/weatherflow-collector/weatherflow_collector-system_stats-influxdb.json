@@ -167,7 +167,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -182,7 +182,7 @@
               "value": "forecast_daily_build"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         }
       ],
       "timeFrom": null,
@@ -302,7 +302,7 @@
             {
               "key": "station_name",
               "operator": "=~",
-              "value": "/^$station_name$/"
+              "value": "/^Olympus$/"
             },
             {
               "condition": "AND",
@@ -317,7 +317,7 @@
               "value": "forecast_hourly_build"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         }
       ],
       "timeFrom": null,
@@ -457,7 +457,7 @@
               "value": "observations"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         }
       ],
       "timeFrom": null,
@@ -602,7 +602,7 @@
               "value": "health_check"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         }
       ],
       "timeFrom": null,
@@ -747,7 +747,7 @@
               "value": "host_performance"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         }
       ],
       "timeFrom": null,
@@ -899,7 +899,7 @@
               "value": "loki_push"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         }
       ],
       "timeFrom": null,
@@ -1431,7 +1431,7 @@
               "value": "process_utilization"
             }
           ],
-          "tz": "$tz"
+          "tz": "America/Denver"
         }
       ],
       "timeFrom": null,
@@ -2560,7 +2560,7 @@
           "pluginVersion": "8.0.4",
           "targets": [
             {
-              "expr": "sum by (collector_type, station_name) (bytes_over_time({app=\"weatherflow-collector\",collector_type=~\"$collector_type_logs\", station_name=~\"$station_name\"}[$__interval]))",
+              "expr": "sum by (collector_type, station_name) (bytes_over_time({app=\"weatherflow-collector\",collector_type=~\"$collector_type_logs\", station_name=~\"Olympus\"}[$__interval]))",
               "legendFormat": "{{station_name}} - {{collector_type}}",
               "refId": "A"
             }
@@ -2646,7 +2646,7 @@
           "repeatDirection": "h",
           "targets": [
             {
-              "expr": "sum by (station_name, host_hostname) (count_over_time({app=\"weatherflow-collector\",collector_type=~\"$collector_type_logs\", station_name=~\"$station_name\"}[$__interval]))",
+              "expr": "sum by (station_name, host_hostname) (count_over_time({app=\"weatherflow-collector\",collector_type=~\"$collector_type_logs\", station_name=~\"Olympus\"}[$__interval]))",
               "legendFormat": "{{station_name}} - {{host_hostname}}",
               "refId": "A"
             }
@@ -2809,7 +2809,7 @@
                 {
                   "key": "station_name",
                   "operator": "=~",
-                  "value": "/^$station_name$/"
+                  "value": "/^Olympus$/"
                 },
                 {
                   "condition": "AND",
@@ -2824,7 +2824,7 @@
                   "value": "import"
                 }
               ],
-              "tz": "$tz"
+              "tz": "America/Denver"
             },
             {
               "alias": "$tag_station_name - $tag_collector_type: Metrics",
@@ -2878,7 +2878,7 @@
                 {
                   "key": "station_name",
                   "operator": "=~",
-                  "value": "/^$station_name$/"
+                  "value": "/^Olympus$/"
                 },
                 {
                   "condition": "AND",
@@ -2893,7 +2893,7 @@
                   "value": "import"
                 }
               ],
-              "tz": "$tz"
+              "tz": "America/Denver"
             }
           ],
           "timeFrom": null,
@@ -2914,60 +2914,6 @@
   ],
   "templating": {
     "list": [
-      {
-        "allValue": null,
-        "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
-        },
-        "datasource": "InfluxDB - weatherflow",
-        "definition": "SHOW TAG VALUES WITH KEY = \"station_name\"",
-        "description": null,
-        "error": null,
-        "hide": 0,
-        "includeAll": true,
-        "label": "Station Name",
-        "multi": true,
-        "name": "station_name",
-        "options": [],
-        "query": "SHOW TAG VALUES WITH KEY = \"station_name\"",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 5,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": null,
-        "current": {
-          "selected": false,
-          "text": "America/Chicago",
-          "value": "America/Chicago"
-        },
-        "datasource": "InfluxDB - weatherflow",
-        "definition": "SHOW TAG VALUES WITH KEY = \"timezone\"",
-        "description": null,
-        "error": null,
-        "hide": 0,
-        "includeAll": false,
-        "label": "Time Zone",
-        "multi": false,
-        "name": "tz",
-        "options": [],
-        "query": "SHOW TAG VALUES WITH KEY = \"timezone\"",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 5,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
       {
         "allValue": null,
         "current": {
