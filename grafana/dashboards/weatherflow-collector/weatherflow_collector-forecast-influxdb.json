@@ -850,8 +850,7 @@
               "operator": "=~",
               "value": "/^Olympus$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "High",
@@ -895,8 +894,7 @@
               "operator": "=~",
               "value": "/^Olympus$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Low",
@@ -940,8 +938,7 @@
               "operator": "=~",
               "value": "/^Olympus$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Conditions",
@@ -979,8 +976,7 @@
               "operator": "=~",
               "value": "/^Olympus$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Chance",
@@ -1018,8 +1014,7 @@
               "operator": "=~",
               "value": "/^Olympus$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "day_num",
@@ -1057,8 +1052,7 @@
               "operator": "=~",
               "value": "/^Olympus$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "day_start_local",
@@ -1096,8 +1090,7 @@
               "operator": "=~",
               "value": "/^Olympus$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "day_relative",
@@ -1135,8 +1128,7 @@
               "operator": "=~",
               "value": "/^Olympus$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -2404,8 +2396,7 @@
               "operator": "=",
               "value": "0"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Temp",
@@ -2455,8 +2446,7 @@
               "operator": "=",
               "value": "0"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Low",
@@ -2506,8 +2496,7 @@
               "operator": "=",
               "value": "0"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Conditions",
@@ -2551,8 +2540,7 @@
               "operator": "=",
               "value": "0"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Chance",
@@ -2596,8 +2584,7 @@
               "operator": "=",
               "value": "0"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Amount",
@@ -2647,8 +2634,7 @@
               "operator": "=",
               "value": "0"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Humidity",
@@ -2692,8 +2678,7 @@
               "operator": "=",
               "value": "0"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Gust",
@@ -2743,8 +2728,7 @@
               "operator": "=",
               "value": "0"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Direction",
@@ -2788,8 +2772,7 @@
               "operator": "=",
               "value": "0"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "UV",
@@ -2833,8 +2816,7 @@
               "operator": "=",
               "value": "0"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Pressure",
@@ -2884,8 +2866,7 @@
               "operator": "=",
               "value": "0"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -3173,8 +3154,7 @@
               "operator": "=",
               "value": "0"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Low",
@@ -3230,8 +3210,7 @@
               "operator": "=",
               "value": "0"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Feels Like - High",
@@ -3287,8 +3266,7 @@
               "operator": "=",
               "value": "0"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Feels Like - Low",
@@ -3344,8 +3322,7 @@
               "operator": "=",
               "value": "0"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -3548,8 +3525,7 @@
               "operator": "=",
               "value": "0"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Accumulation",
@@ -3605,8 +3581,7 @@
               "operator": "=",
               "value": "0"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "title": "Precipitation",
@@ -3773,8 +3748,7 @@
               "operator": "=",
               "value": "0"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Low",
@@ -3830,8 +3804,7 @@
               "operator": "=",
               "value": "0"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "title": "Sea Level Pressure",
@@ -4007,8 +3980,7 @@
               "operator": "=",
               "value": "0"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Gust",
@@ -4064,8 +4036,7 @@
               "operator": "=",
               "value": "0"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "title": "Wind",
@@ -4220,8 +4191,7 @@
               "operator": "=",
               "value": "0"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Low",
@@ -4271,8 +4241,7 @@
               "operator": "=",
               "value": "0"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "title": "Humidity",
@@ -4412,8 +4381,7 @@
               "operator": "=",
               "value": "0"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "title": "UV",

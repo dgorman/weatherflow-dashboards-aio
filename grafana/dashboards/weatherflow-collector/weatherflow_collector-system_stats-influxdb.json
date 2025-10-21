@@ -181,8 +181,7 @@
               "operator": "=",
               "value": "forecast_daily_build"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -316,8 +315,7 @@
               "operator": "=",
               "value": "forecast_hourly_build"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -456,8 +454,7 @@
               "operator": "=",
               "value": "observations"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -601,8 +598,7 @@
               "operator": "=",
               "value": "health_check"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -746,8 +742,7 @@
               "operator": "=",
               "value": "host_performance"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -898,8 +893,7 @@
               "operator": "=",
               "value": "loki_push"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -1430,8 +1424,7 @@
               "operator": "=",
               "value": "process_utilization"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -2823,8 +2816,7 @@
                   "operator": "=",
                   "value": "import"
                 }
-              ],
-              "tz": "America/Denver"
+              ]
             },
             {
               "alias": "$tag_station_name - $tag_collector_type: Metrics",
@@ -2892,8 +2884,7 @@
                   "operator": "=",
                   "value": "import"
                 }
-              ],
-              "tz": "America/Denver"
+              ]
             }
           ],
           "timeFrom": null,

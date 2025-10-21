@@ -52,6 +52,14 @@ for file in "${DASHBOARD_DIR}"/*.json; do
         gsub(" tz\\([^)]+\\)"; "")
       else . end
     )
+  ' | \
+  jq '
+    # Remove tz field from all panel targets
+    walk(
+      if type == "object" and has("targets") then
+        .targets |= map(del(.tz))
+      else . end
+    )
   ' > "${file}.tmp"
   
   # Replace original with updated version

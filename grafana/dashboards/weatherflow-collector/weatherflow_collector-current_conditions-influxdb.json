@@ -541,8 +541,7 @@
               "operator": "=~",
               "value": "/^Olympus$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -1048,8 +1047,7 @@
               "operator": "=",
               "value": "collector_rest"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -1563,8 +1561,7 @@
               "operator": "=",
               "value": "collector_forecast"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -2078,8 +2075,7 @@
               "operator": "=",
               "value": "collector_forecast"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -2692,8 +2688,7 @@
               "operator": "=",
               "value": "collector_forecast"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": "now/d",
@@ -2889,8 +2884,7 @@
               "operator": "=",
               "value": "collector_rest"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -3038,8 +3032,7 @@
               "operator": "=",
               "value": "collector_rest"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -3203,8 +3196,7 @@
               "operator": "=",
               "value": "0"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -3374,8 +3366,7 @@
               "operator": "=~",
               "value": "/^Olympus$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -4148,8 +4139,7 @@
               "operator": "=~",
               "value": "/^Olympus$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Conditions",
@@ -4187,8 +4177,7 @@
               "operator": "=~",
               "value": "/^Olympus$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -5934,8 +5923,7 @@
               "operator": "=",
               "value": "remote-forecast"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "🌙",
@@ -5979,8 +5967,7 @@
               "operator": "=",
               "value": "remote-forecast"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -6188,8 +6175,7 @@
               "operator": "=~",
               "value": "/^Olympus$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Duration",
@@ -6239,8 +6225,7 @@
               "operator": "=~",
               "value": "/^Olympus$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -6405,8 +6390,7 @@
               "operator": "=~",
               "value": "/^Olympus$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Duration",
@@ -6456,8 +6440,7 @@
               "operator": "=~",
               "value": "/^Olympus$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -6612,8 +6595,7 @@
               "operator": "=~",
               "value": "/^Olympus$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Last Distance",
@@ -6669,8 +6651,7 @@
               "operator": "=~",
               "value": "/^Olympus$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Last Hour",
@@ -6726,8 +6707,7 @@
               "operator": "=~",
               "value": "/^Olympus$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Last 3 hours",
@@ -6777,8 +6757,7 @@
               "operator": "=~",
               "value": "/^Olympus$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,

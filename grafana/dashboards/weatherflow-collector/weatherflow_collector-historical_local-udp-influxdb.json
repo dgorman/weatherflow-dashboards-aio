@@ -199,8 +199,7 @@
               "operator": "=~",
               "value": "/^$collector_type$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Low",
@@ -250,8 +249,7 @@
               "operator": "=~",
               "value": "/^$collector_type$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -813,8 +811,7 @@
               "operator": "=~",
               "value": "/^Olympus$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Low",
@@ -864,8 +861,7 @@
               "operator": "=~",
               "value": "/^Olympus$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -1047,8 +1043,7 @@
               "operator": "=~",
               "value": "/^Olympus$/"
             }
-          ],
-          "tz": "America/Chicago"
+          ]
         }
       ],
       "title": "Precipitation",
@@ -1228,8 +1223,7 @@
               "operator": "=~",
               "value": "/^$collector_type$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Low",
@@ -1273,8 +1267,7 @@
               "operator": "=~",
               "value": "/^$collector_type$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -1432,8 +1425,7 @@
               "operator": "=~",
               "value": "/^$collector_type$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Low",
@@ -1483,8 +1475,7 @@
               "operator": "=~",
               "value": "/^$collector_type$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -1663,8 +1654,7 @@
               "operator": "=~",
               "value": "/^$collector_type$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Illuminance",
@@ -1708,8 +1698,7 @@
               "operator": "=~",
               "value": "/^$collector_type$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "UV",
@@ -1753,8 +1742,7 @@
               "operator": "=~",
               "value": "/^$collector_type$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -1925,8 +1913,7 @@
               "operator": "=~",
               "value": "/^$collector_type$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Average",
@@ -1976,8 +1963,7 @@
               "operator": "=~",
               "value": "/^$collector_type$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Lull",
@@ -2027,8 +2013,7 @@
               "operator": "=~",
               "value": "/^$collector_type$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,

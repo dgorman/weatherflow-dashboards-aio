@@ -670,8 +670,7 @@
               "operator": "=~",
               "value": "/^Olympus$/"
             }
-          ],
-          "tz": ""
+          ]
         },
         {
           "alias": "Firmware Version",
@@ -1297,8 +1296,7 @@
               "operator": "=~",
               "value": "/^Olympus$/"
             }
-          ],
-          "tz": ""
+          ]
         },
         {
           "alias": "Hub RSSI",

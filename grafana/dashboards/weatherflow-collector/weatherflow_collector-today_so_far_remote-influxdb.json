@@ -279,8 +279,7 @@
               "operator": "=~",
               "value": "/^Olympus$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Feels Like",
@@ -336,8 +335,7 @@
               "operator": "=~",
               "value": "/^Olympus$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Heat Index",
@@ -393,8 +391,7 @@
               "operator": "=~",
               "value": "/^Olympus$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Wind Chill",
@@ -452,8 +449,7 @@
               "operator": "=~",
               "value": "/^Olympus$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Dry Bulb",
@@ -550,8 +546,7 @@
               "operator": "=~",
               "value": "/^Olympus$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Dew Point",
@@ -609,8 +604,7 @@
               "operator": "=~",
               "value": "/^Olympus$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -762,8 +756,7 @@
               "operator": "=~",
               "value": "/^$collector_type$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Air Density",
@@ -819,8 +812,7 @@
               "operator": "=~",
               "value": "/^$collector_type$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -954,8 +946,7 @@
               "operator": "=~",
               "value": "/^$collector_type$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -1081,8 +1072,7 @@
               "operator": "=~",
               "value": "/^$collector_type$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -1290,8 +1280,7 @@
               "operator": "=~",
               "value": "/^$collector_type$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Illuminance",
@@ -1341,8 +1330,7 @@
               "operator": "=~",
               "value": "/^$collector_type$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "UV",
@@ -1392,8 +1380,7 @@
               "operator": "=~",
               "value": "/^$collector_type$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -1592,8 +1579,7 @@
               "operator": "=~",
               "value": "/^$collector_type$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": "60s",
@@ -1730,8 +1716,7 @@
               "operator": "=~",
               "value": "/^$collector_type$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": "60s",
@@ -1966,8 +1951,7 @@
               "operator": "=~",
               "value": "/^$collector_type$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Average",
@@ -2023,8 +2007,7 @@
               "operator": "=~",
               "value": "/^$collector_type$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Lull",
@@ -2080,8 +2063,7 @@
               "operator": "=~",
               "value": "/^$collector_type$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -2246,8 +2228,7 @@
               "operator": "=~",
               "value": "/^$collector_type$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Accumulated Rain",
@@ -2303,8 +2284,7 @@
               "operator": "=~",
               "value": "/^$collector_type$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -2397,8 +2377,7 @@
               "operator": "=~",
               "value": "/^$collector_type$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Strike Count",
@@ -2450,8 +2429,7 @@
               "operator": "=~",
               "value": "/^$collector_type$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "hide": false,

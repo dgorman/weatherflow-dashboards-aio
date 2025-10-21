@@ -371,8 +371,7 @@
               "operator": "=~",
               "value": "/^$forecast_hourly_days_out$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Observed",
@@ -428,8 +427,7 @@
               "operator": "=",
               "value": "collector_udp"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -753,8 +751,7 @@
               "operator": "=~",
               "value": "/^$forecast_hourly_days_out$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Observed",
@@ -804,8 +801,7 @@
               "operator": "=",
               "value": "collector_udp"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "title": "Humidity",
@@ -1124,8 +1120,7 @@
               "operator": "=~",
               "value": "/^$forecast_hourly_days_out$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Observed",
@@ -1175,8 +1170,7 @@
               "operator": "=",
               "value": "collector_rest"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "title": "Pressure",
@@ -1506,8 +1500,7 @@
               "operator": "=~",
               "value": "/^$forecast_hourly_days_out$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Observed",
@@ -1563,8 +1556,7 @@
               "operator": "=",
               "value": "collector_udp"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "timeFrom": null,
@@ -1894,8 +1886,7 @@
               "operator": "=~",
               "value": "/^$forecast_hourly_days_out$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Observed",
@@ -1951,8 +1942,7 @@
               "operator": "=",
               "value": "collector_udp"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "title": "Wind",
@@ -2275,8 +2265,7 @@
               "operator": "=~",
               "value": "/^$forecast_hourly_days_out$/"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         },
         {
           "alias": "Observed",
@@ -2326,8 +2315,7 @@
               "operator": "=",
               "value": "collector_udp"
             }
-          ],
-          "tz": "America/Denver"
+          ]
         }
       ],
       "title": "UV",
