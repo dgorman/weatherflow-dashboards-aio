@@ -51,7 +51,7 @@ import utils.utils as utils
 import logger
 
 
-UDPProtocol = logger.get_module_logger(__name__ + ".UDPProtocol")
+logger_UDPProtocol = logger.get_module_logger(__name__ + ".UDPProtocol")
 
 
 class UDPProtocol(asyncio.DatagramProtocol):
@@ -59,10 +59,11 @@ class UDPProtocol(asyncio.DatagramProtocol):
         self.collector = collector
 
     def datagram_received(self, data, addr):
+        logger_UDPProtocol.debug(f"Received {len(data)} bytes from {addr}")
         try:
             asyncio.create_task(self.collector.handle_data(data, addr))
         except Exception as e:
-            logger_UDPCollector.error(f"Error in datagram_received: {e}")
+            logger_UDPProtocol.error(f"Error in datagram_received: {e}")
 
 
 logger_UDPCollector = logger.get_module_logger(__name__ + ".UDPCollector")
