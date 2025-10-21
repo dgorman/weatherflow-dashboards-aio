@@ -60,11 +60,11 @@ class UDPProtocol(asyncio.DatagramProtocol):
         self.collector = collector
 
     def datagram_received(self, data, addr):
-        logger_UDPCollector.debug(f"Received datagram from {addr}, {len(data)} bytes")
+        UDPProtocol.debug(f"Received datagram from {addr}, {len(data)} bytes")
         try:
             asyncio.create_task(self.collector.handle_data(data, addr))
         except Exception as e:
-            logger_UDPCollector.error(f"Error in datagram_received: {e}")
+            UDPProtocol.error(f"Error in datagram_received: {e}")
 
 
 logger_UDPCollector = logger.get_module_logger(__name__ + ".UDPCollector")
@@ -94,12 +94,18 @@ class UDPCollector:
                 f"Attempting to bind to port {self.port}, attempt {retry_count + 1}"
             )
             try:
-                # Create an asyncio Datagram Endpoint
+                # Create a UDP socket with SO_BROADCAST enabled for receiving broadcast packets
+                sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+                sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+                sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+                sock.setblocking(False)
+                sock.bind((self.listen_address, self.port))
+                
+                # Create an asyncio Datagram Endpoint using the pre-configured socket
                 loop = asyncio.get_running_loop()
                 listen = loop.create_datagram_endpoint(
                     lambda: UDPProtocol(self),
-                    local_addr=(self.listen_address, self.port),
-                    reuse_port=True,  # Enable port reuse
+                    sock=sock,
                 )
                 self.transport, _ = await listen
                 logger_UDPCollector.info(
