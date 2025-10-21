@@ -1,5 +1,4 @@
 # collector_udp.py
-# Original implementation using local_addr parameter
 
 """
 WeatherFlow Collector UDP Client
@@ -52,7 +51,7 @@ import utils.utils as utils
 import logger
 
 
-logger_UDPProtocol = logger.get_module_logger(__name__ + ".UDPProtocol")
+UDPProtocol = logger.get_module_logger(__name__ + ".UDPProtocol")
 
 
 class UDPProtocol(asyncio.DatagramProtocol):
@@ -60,11 +59,10 @@ class UDPProtocol(asyncio.DatagramProtocol):
         self.collector = collector
 
     def datagram_received(self, data, addr):
-        logger_UDPProtocol.debug(f"Received datagram from {addr}, {len(data)} bytes")
         try:
             asyncio.create_task(self.collector.handle_data(data, addr))
         except Exception as e:
-            logger_UDPProtocol.error(f"Error in datagram_received: {e}")
+            logger_UDPCollector.error(f"Error in datagram_received: {e}")
 
 
 logger_UDPCollector = logger.get_module_logger(__name__ + ".UDPCollector")
@@ -94,18 +92,12 @@ class UDPCollector:
                 f"Attempting to bind to port {self.port}, attempt {retry_count + 1}"
             )
             try:
-                # Create a UDP socket with SO_BROADCAST enabled for receiving broadcast packets
-                sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-                sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
-                sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-                sock.setblocking(False)
-                sock.bind((self.listen_address, self.port))
-                
-                # Create an asyncio Datagram Endpoint using the pre-configured socket
+                # Create an asyncio Datagram Endpoint
                 loop = asyncio.get_running_loop()
                 listen = loop.create_datagram_endpoint(
                     lambda: UDPProtocol(self),
-                    sock=sock,
+                    local_addr=(self.listen_address, self.port),
+                    reuse_port=True,  # Enable port reuse
                 )
                 self.transport, _ = await listen
                 logger_UDPCollector.info(
@@ -147,8 +139,6 @@ class UDPCollector:
 
             # Decode the data and add metadata
             collector_data_with_metadata = self.decode_data_and_add_metadata(data)
-            logger_UDPCollector.info(f"DEBUG: Decoded structure from {addr}: {collector_data_with_metadata}")
-            
             if collector_data_with_metadata is not None:
                 # Publish the data using the event manager
                 await self.event_manager.publish(
