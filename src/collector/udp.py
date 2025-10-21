@@ -1,4 +1,5 @@
 # collector_udp.py
+# UDP broadcast collection with SO_BROADCAST socket option enabled
 
 """
 WeatherFlow Collector UDP Client
