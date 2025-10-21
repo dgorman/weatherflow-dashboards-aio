@@ -92,16 +92,22 @@ class UDPCollector:
                 f"Attempting to bind to port {self.port}, attempt {retry_count + 1}"
             )
             try:
-                # Create an asyncio Datagram Endpoint
+                # Create socket manually with SO_BROADCAST enabled for receiving broadcast packets
+                sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+                sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+                sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+                sock.setblocking(False)
+                sock.bind((self.listen_address, self.port))
+                
+                # Create an asyncio Datagram Endpoint using the pre-configured socket
                 loop = asyncio.get_running_loop()
                 listen = loop.create_datagram_endpoint(
                     lambda: UDPProtocol(self),
-                    local_addr=(self.listen_address, self.port),
-                    reuse_port=True,  # Enable port reuse
+                    sock=sock
                 )
                 self.transport, _ = await listen
                 logger_UDPCollector.info(
-                    f"Listening for UDP traffic on port {self.port}"
+                    f"Listening for UDP traffic on port {self.port} with SO_BROADCAST enabled"
                 )
                 break  # Exit the loop on successful socket creation
             except OSError as e:
