@@ -2332,7 +2332,7 @@
   "templating": {
     "list": [
       {
-        "allValue": null,
+        "allValue": ".*",
         "current": {
           "selected": false,
           "text": "All",
