@@ -1,8 +1,8 @@
 
 
 services:
-  wxfdashboardsaio_influxdb:
-    container_name: wxfdashboardsaio_influxdb
+  influxdb:
+    container_name: weatherflow-influxdb
     environment:
       TZ: America/Denver
       DOCKER_INFLUXDB_INIT_MODE: setup
@@ -18,9 +18,9 @@ services:
       target: 8086
     restart: always
     volumes:
-    - wxfdashboardsaio-influxdb-data:/var/lib/influxdb:rw
-  wxfdashboardsaio-collector:
-    container_name: wxfdashboardsaio-collector-a1af9766
+    - weatherflow-influxdb-data:/var/lib/influxdb2:rw
+  collector:
+    container_name: weatherflow-collector
     ports:
       - "50222:50222/udp"
       - "6789:6789/tcp"
@@ -31,16 +31,16 @@ services:
       WEATHERFLOW_COLLECTOR_COLLECTOR_UDP_ENABLED: "true"
       WEATHERFLOW_COLLECTOR_HEALTHCHECK: "true"
       WEATHERFLOW_COLLECTOR_HOST_HOSTNAME: MBP.olympusdrive.com
-      WEATHERFLOW_COLLECTOR_INFLUXDB_URL: http://wxfdashboardsaio_influxdb:8086
+      WEATHERFLOW_COLLECTOR_INFLUXDB_URL: http://influxdb:8086
       WEATHERFLOW_COLLECTOR_INFLUXDB_TOKEN: weatherflow-admin-token-12345
       WEATHERFLOW_COLLECTOR_INFLUXDB_ORG: weatherflow
       WEATHERFLOW_COLLECTOR_INFLUXDB_BUCKET: weatherflow
       WEATHERFLOW_COLLECTOR_TOKEN: a1af9766-cf15-429b-8bbc-8c40bcda2314
       WEATHERFLOW_COLLECTOR_API_TOKEN: a1af9766-cf15-429b-8bbc-8c40bcda2314
     depends_on:
-      - "wxfdashboardsaio_influxdb"
+      - "influxdb"
     image: weatherflow-collector:dev-fix
     restart: always
 volumes:
-  wxfdashboardsaio-influxdb-data: 
+  weatherflow-influxdb-data: 
 version: '3.3'
