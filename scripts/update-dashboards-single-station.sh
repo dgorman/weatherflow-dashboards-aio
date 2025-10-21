@@ -44,6 +44,14 @@ for file in "${DASHBOARD_DIR}"/*.json; do
         gsub("\\$station_name"; $station) | gsub("\\$tz"; $tz)
       else . end
     )
+  ' | \
+  jq '
+    # Remove tz() function calls from queries as they cause grouping issues
+    walk(
+      if type == "string" then
+        gsub(" tz\\([^)]+\\)"; "")
+      else . end
+    )
   ' > "${file}.tmp"
   
   # Replace original with updated version
