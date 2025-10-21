@@ -1896,7 +1896,7 @@
         "type": "custom"
       },
       {
-        "allValue": null,
+        "allValue": ".*",
         "current": {
           "selected": false,
           "text": "All",
