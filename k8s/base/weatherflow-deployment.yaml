@@ -31,22 +31,8 @@ spec:
           value: "weatherflow"
         - name: WEATHERFLOW_COLLECTOR_INFLUXDB_BUCKET
           value: "weatherflow"
-        - name: WEATHERFLOW_COLLECTOR_DISABLE_REST_OBSERVATIONS_DEVICE
-          value: "false"
-        - name: WEATHERFLOW_COLLECTOR_DISABLE_REST_OBSERVATIONS_STATION
-          value: "false"
-        - name: WEATHERFLOW_COLLECTOR_DISABLE_REST_FORECASTS
-          value: "false"
-        - name: WEATHERFLOW_COLLECTOR_DISABLE_REST_STATS
-          value: "false"
-        - name: WEATHERFLOW_COLLECTOR_DISABLE_WEBSOCKET
-          value: "false"
-        - name: WEATHERFLOW_COLLECTOR_DISABLE_UDP
-          value: "false"
-        - name: WEATHERFLOW_COLLECTOR_DISABLE_HOST_PERFORMANCE
-          value: "false"
-        - name: WEATHERFLOW_COLLECTOR_DISABLE_HEALTH_CHECK
-          value: "false"
+        - name: WEATHERFLOW_COLLECTOR_COLLECTOR_UDP_ENABLED
+          value: "true"
         - name: WEATHERFLOW_COLLECTOR_DEBUG
           value: "true"
         - name: WEATHERFLOW_COLLECTOR_VINEYARD_VANTAGE_HANDLER_ENABLED
