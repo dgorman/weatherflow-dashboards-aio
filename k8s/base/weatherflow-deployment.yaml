@@ -44,3 +44,22 @@ spec:
           limits:
             memory: "512Mi"
             cpu: "500m"
+      
+      # UDP Forwarder Sidecar
+      # Captures broadcast packets at interface level and forwards to localhost
+      # Required for cross-VLAN UDP broadcast delivery
+      - name: udp-forwarder
+        image: registry.olympusdrive.com/weatherflow-udp-forwarder:latest
+        securityContext:
+          privileged: true  # Required for raw packet capture
+          capabilities:
+            add:
+            - NET_RAW
+            - NET_ADMIN
+        resources:
+          requests:
+            memory: "32Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
