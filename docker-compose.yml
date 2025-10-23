@@ -19,6 +19,19 @@ services:
     restart: always
     volumes:
     - weatherflow-influxdb-data:/var/lib/influxdb2:rw
+
+  udp-forwarder:
+    container_name: weatherflow-udp-forwarder
+    build:
+      context: .
+      dockerfile: Dockerfile.forwarder
+    network_mode: host
+    privileged: true
+    restart: always
+    cap_add:
+      - NET_RAW
+      - NET_ADMIN
+
   collector:
     container_name: weatherflow-collector
     build:
@@ -41,6 +54,7 @@ services:
       WEATHERFLOW_COLLECTOR_API_TOKEN: a1af9766-cf15-429b-8bbc-8c40bcda2314
     depends_on:
       - "influxdb"
+      - "udp-forwarder"
     image: weatherflow-collector:dev-fix
     restart: always
 volumes:
