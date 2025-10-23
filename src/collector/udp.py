@@ -93,10 +93,11 @@ class UDPCollector:
                 f"Attempting to bind to port {self.port}, attempt {retry_count + 1}"
             )
             try:
-                # Create socket manually with SO_BROADCAST enabled for receiving broadcast packets
+                # Create socket manually with SO_BROADCAST and SO_REUSEPORT enabled
                 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
                 sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
                 sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+                sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)  # Critical for broadcast reception!
                 sock.setblocking(False)
                 sock.bind((self.listen_address, self.port))
                 
