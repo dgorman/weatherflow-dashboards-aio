@@ -1,4 +1,4 @@
-# UDP Packet Forwarder
+# UDP Packet Forwarder Sidecar
 
 ## Overview
 
@@ -11,186 +11,239 @@ The UDP packet forwarder solves a cross-VLAN broadcast limitation where WeatherF
 - **Issue**: Linux kernel doesn't deliver global broadcasts (255.255.255.255) to application sockets when source and destination are on different subnets
 - **Evidence**: `tcpdump` can see packets at the interface level, but UDP sockets don't receive them
 
-## Solution
+## Solution: Sidecar Container Pattern
 
-The forwarder uses `scapy` (libpcap/BPF) to capture UDP packets at the network interface level (same mechanism as `tcpdump`), bypassing the kernel's socket delivery mechanism. It then forwards these packets to `localhost:50222` where the WeatherFlow collector is listening.
+The forwarder runs as a **sidecar container** alongside the WeatherFlow collector in the same pod. This approach provides:
+
+- **Automatic co-location**: Forwarder always runs on the same node as the collector
+- **Automatic failover**: When the collector pod moves, the forwarder moves with it
+- **No wasted resources**: Only runs where needed (with the collector)
+- **Clean architecture**: Separation of concerns between packet capture and data processing
+- **CI/CD integration**: Deployed automatically via Argo Workflows
 
 ### How It Works
 
-1. Captures UDP port 50222 packets at the interface level using scapy
-2. Extracts the UDP payload from each packet
-3. Forwards the payload to localhost:50222 as unicast
-4. Localhost delivery works because it doesn't involve cross-subnet routing
+1. **Sidecar container** captures UDP port 50222 packets at interface level using scapy (libpcap/BPF)
+2. Extracts the UDP payload from each broadcast packet
+3. Forwards to `localhost:50222` where the collector container is listening
+4. Both containers share the pod's network namespace via `hostNetwork: true`
+5. Localhost delivery works because both containers are in the same network namespace
 
-## Installation
+## Deployment
 
-### Automated Deployment
+### Production (Kubernetes)
 
-Deploy to all Kubernetes nodes:
-
-```bash
-cd k8s
-./deploy-udp-forwarder.sh
-```
-
-This script will:
-- Install python3-scapy on each node
-- Copy the forwarder script to /opt/weatherflow/
-- Install and enable the systemd service
-- Start the forwarder
-
-### Manual Installation
-
-On each Kubernetes node:
+The UDP forwarder is deployed automatically as part of the WeatherFlow collector deployment:
 
 ```bash
-# Install dependencies
-sudo apt-get update
-sudo apt-get install -y python3-scapy
+# Deploy via Argo Workflows (recommended)
+cd /home/dgorman/Apps/weatherflow-collector/argo
+./trigger-deploy.sh
 
-# Create directory
-sudo mkdir -p /opt/weatherflow
-
-# Copy forwarder script
-sudo cp udp_interface_forwarder.py /opt/weatherflow/
-sudo chmod +x /opt/weatherflow/udp_interface_forwarder.py
-
-# Install systemd service
-sudo cp k8s/weatherflow-udp-forwarder.service /etc/systemd/system/
-sudo systemctl daemon-reload
-sudo systemctl enable weatherflow-udp-forwarder
-sudo systemctl start weatherflow-udp-forwarder
+# Or deploy directly with kubectl
+kubectl apply -k /home/dgorman/Apps/weatherflow-collector/k8s/overlays/prod
 ```
 
-## Management
+The sidecar container is defined in `k8s/base/weatherflow-deployment.yaml`:
 
-### Check Status
+```yaml
+containers:
+  - name: collector
+    image: registry.olympusdrive.com/weatherflow-collector:latest
+    # ... collector configuration ...
+  
+  - name: udp-forwarder
+    image: registry.olympusdrive.com/weatherflow-udp-forwarder:latest
+    securityContext:
+      privileged: true  # Required for raw packet capture
+      capabilities:
+        add:
+        - NET_RAW
+        - NET_ADMIN
+    resources:
+      requests:
+        memory: "32Mi"
+        cpu: "50m"
+      limits:
+        memory: "128Mi"
+        cpu: "200m"
+```
+
+### Local Development (Docker Compose)
+
+The UDP forwarder is included in `docker-compose.yml`:
 
 ```bash
-sudo systemctl status weatherflow-udp-forwarder
+cd /Users/dgorman/Dev/weatherflow-collector
+docker-compose up -d
 ```
 
-### View Logs
-
-```bash
-# Follow logs in real-time
-sudo journalctl -u weatherflow-udp-forwarder -f
-
-# View recent logs
-sudo journalctl -u weatherflow-udp-forwarder -n 100
-```
-
-### Restart Service
-
-```bash
-sudo systemctl restart weatherflow-udp-forwarder
-```
-
-### Stop Service
-
-```bash
-sudo systemctl stop weatherflow-udp-forwarder
-```
-
-### Disable Service
-
-```bash
-sudo systemctl disable weatherflow-udp-forwarder
-```
+**Note**: UDP forwarder requires `privileged: true` which doesn't work the same way on Docker Desktop for Mac. For local development, the REST and WebSocket collectors provide full functionality.
 
 ## Monitoring
 
-The forwarder logs to systemd journal with INFO level by default. Each forwarded packet is logged at DEBUG level.
-
-To enable debug logging, edit `/etc/systemd/system/weatherflow-udp-forwarder.service` and change:
-
-```ini
-ExecStart=/usr/bin/python3 -u /opt/weatherflow/udp_interface_forwarder.py
-```
-
-to:
-
-```ini
-Environment="LOGLEVEL=DEBUG"
-ExecStart=/usr/bin/python3 -u /opt/weatherflow/udp_interface_forwarder.py
-```
-
-Then reload and restart:
+### Check Pod Status
 
 ```bash
-sudo systemctl daemon-reload
-sudo systemctl restart weatherflow-udp-forwarder
+# Both containers should show as Running (2/2 Ready)
+kubectl get pods -n weatherflow -o wide
 ```
+
+Expected output:
+```
+NAME                                    READY   STATUS    RESTARTS   AGE     NODE
+weatherflow-collector-5b49fc7548-xxxxx  2/2     Running   0          5m      node02
+```
+
+### View Forwarder Logs
+
+```bash
+# View forwarder sidecar logs
+kubectl logs -n weatherflow deployment/weatherflow-collector udp-forwarder --tail=50
+
+# Follow forwarder logs in real-time
+kubectl logs -n weatherflow deployment/weatherflow-collector udp-forwarder -f
+```
+
+### Verify UDP Data Flow
+
+```bash
+# Check if UDP data is being written to InfluxDB
+kubectl exec -n weatherflow deployment/influxdb -- \
+  influx query 'from(bucket: "weatherflow") 
+                |> range(start: -10m) 
+                |> filter(fn: (r) => r.collector_type == "collector_udp") 
+                |> count()' \
+  --org weatherflow \
+  --token weatherflow-admin-token-12345
+```
+
+### Resource Usage
+
+Check sidecar resource consumption:
+
+```bash
+kubectl top pod -n weatherflow
+```
+
+Expected usage:
+- CPU: 0-5m (minimal when idle, brief spikes during packet capture)
+- Memory: 32-70Mi
 
 ## Troubleshooting
 
-### Service Fails to Start
+### Pod Shows 1/2 Ready
 
-1. Check if scapy is installed:
-   ```bash
-   python3 -c "import scapy"
-   ```
-
-2. Verify the script has execute permissions:
-   ```bash
-   ls -l /opt/weatherflow/udp_interface_forwarder.py
-   ```
-
-3. Check for detailed errors:
-   ```bash
-   sudo journalctl -u weatherflow-udp-forwarder -n 50
-   ```
-
-### No Packets Being Forwarded
-
-1. Verify packets are arriving at the interface:
-   ```bash
-   sudo tcpdump -i any -n udp port 50222
-   ```
-
-2. Check if the collector is listening:
-   ```bash
-   sudo lsof -i UDP:50222
-   ```
-
-3. Verify the forwarder is running:
-   ```bash
-   ps aux | grep udp_interface_forwarder
-   ```
-
-### Testing the Forwarder
-
-Run the forwarder manually to see debug output:
+If the pod shows only 1 container ready:
 
 ```bash
-sudo python3 -u /opt/weatherflow/udp_interface_forwarder.py
+# Check which container is failing
+kubectl describe pod -n weatherflow <pod-name>
+
+# Check forwarder logs for errors
+kubectl logs -n weatherflow <pod-name> udp-forwarder
 ```
 
-You should see messages like:
+Common issues:
+- **Scapy import error**: Verify `pip install scapy` in Dockerfile (not apt-get)
+- **Insufficient privileges**: Verify `privileged: true` in deployment
+
+### No UDP Data in InfluxDB
+
+1. Verify packets are reaching the node:
+   ```bash
+   # SSH to the node running the collector pod
+   ssh dgorman@<node-ip>
+   sudo tcpdump -i any -n udp port 50222 -c 5
+   ```
+
+2. Check if collector is receiving data:
+   ```bash
+   kubectl logs -n weatherflow deployment/weatherflow-collector collector | grep -i udp
+   ```
+
+   Expected output:
+   ```
+   collector_udp enabled.
+   Listening for UDP traffic on port 50222 with SO_BROADCAST enabled
+   ```
+
+3. Verify hostNetwork is working:
+   ```bash
+   kubectl get pod -n weatherflow <pod-name> -o jsonpath='{.spec.hostNetwork}'
+   # Should output: true
+   ```
+
+### Forwarder Container Restarts
+
+Check restart reason:
+
+```bash
+kubectl describe pod -n weatherflow <pod-name>
 ```
-2025-10-22 22:07:13 - INFO - ============================================================
-2025-10-22 22:07:13 - INFO - UDP Packet Forwarder (Interface Level)
-2025-10-22 22:07:13 - INFO - ============================================================
-2025-10-22 22:07:13 - INFO - Capturing UDP packets on port 50222
-2025-10-22 22:07:13 - INFO - Forwarding to: 127.0.0.1:50222
+
+Common reasons:
+- OOMKilled: Increase memory limits in deployment
+- CrashLoopBackOff: Check logs for Python errors
+
+## Building the Forwarder Image
+
+### On Production Cluster
+
+The forwarder image is built automatically via Argo Workflows, but you can build manually:
+
+```bash
+cd /Users/dgorman/Dev/weatherflow-collector
+./build-forwarder.sh
 ```
+
+This builds on `node01.olympusdrive.com` and pushes to `registry.olympusdrive.com`.
+
+### Image Details
+
+- **Base image**: python:3.12-slim
+- **Dependencies**: scapy (via pip), tcpdump
+- **Script**: udp_interface_forwarder.py
+- **Registry**: registry.olympusdrive.com/weatherflow-udp-forwarder
+- **Tags**: latest, <git-sha>
+
+## Architecture Benefits
+
+### Sidecar vs. Systemd Service
+
+**Sidecar Advantages** (Current Implementation):
+- ✅ Automatic co-location with collector
+- ✅ No manual node setup required
+- ✅ Moves automatically when pod is rescheduled
+- ✅ No wasted resources on unused nodes
+- ✅ Integrated with CI/CD pipeline
+- ✅ Container restart policies handled by Kubernetes
+
+**Previous Systemd Approach**:
+- ❌ Required manual installation on each node
+- ❌ Wasted resources running on nodes without collector
+- ❌ Manual updates required on each node
+- ❌ Doesn't follow pod movement
 
 ## Requirements
 
-- **Root privileges**: Required for packet capture at interface level
-- **python3-scapy**: Packet capture library
-- **Network access**: Must be running on the same node as the WeatherFlow collector pod (due to hostNetwork: true)
-
-## Architecture Notes
-
-- The WeatherFlow collector deployment uses `hostNetwork: true`, so the collector pod listens on the host's localhost:50222
-- The forwarder must run on the same node as the collector pod to forward to localhost
-- Currently deployed on all three Kubernetes nodes for redundancy
-- Only the node running the collector pod will successfully forward data to the application
+- **Privileged container**: Required for raw packet capture (NET_RAW, NET_ADMIN capabilities)
+- **scapy**: Python packet capture library (installed via pip)
+- **hostNetwork: true**: Both collector and forwarder must share host network
+- **Node placement**: Runs wherever collector pod is scheduled
 
 ## Performance
 
-- Minimal CPU overhead (packet forwarding is very lightweight)
-- No memory accumulation (packets are processed and discarded immediately)
-- Automatically stops when receiving SIGTERM or SIGINT
-- Restarts automatically on failure (RestartSec=10)
+- **CPU**: ~0-5m (minimal overhead)
+- **Memory**: 32-70Mi (lightweight)
+- **Network**: No additional latency (localhost forwarding)
+- **Automatic restart**: Kubernetes restarts on failure
+- **Graceful shutdown**: Handles SIGTERM/SIGINT properly
+
+## Related Files
+
+- `udp_interface_forwarder.py` - Forwarder Python script
+- `Dockerfile.forwarder` - Container image definition
+- `build-forwarder.sh` - Script to build and push forwarder image
+- `k8s/base/weatherflow-deployment.yaml` - Sidecar container definition
+- `docker-compose.yml` - Local development configuration

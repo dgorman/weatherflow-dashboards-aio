@@ -6,8 +6,18 @@ This directory contains Kubernetes manifests and deployment scripts for the Weat
 
 - **InfluxDB 2.7**: Time-series database for storing weather data
 - **WeatherFlow Collector**: Collects data from WeatherFlow API and local UDP broadcasts
+- **UDP Forwarder Sidecar**: Captures broadcast packets at interface level and forwards to collector
 - **Storage**: Longhorn persistent volume for InfluxDB data
-- **Networking**: Collector uses hostNetwork to receive UDP broadcasts on port 50222
+- **Networking**: Both collector and forwarder use hostNetwork to send/receive UDP on port 50222
+
+### UDP Forwarder Sidecar
+
+The collector pod includes a **UDP forwarder sidecar container** that solves cross-VLAN broadcast limitations. See [UDP_FORWARDER_README.md](./UDP_FORWARDER_README.md) for complete documentation on:
+
+- How the forwarder works (interface-level packet capture)
+- Sidecar architecture benefits (automatic co-location, failover)
+- Monitoring and troubleshooting
+- Building and deploying forwarder images
 
 ## Deployment Methods
 
